@@ -1,24 +1,14 @@
-# README
+### サイト名  :  麺多list
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- サイト概要
+    - サイトテーマ-
+       行きたいお店をを検索したり実際に行ったお店の投稿ができるレビューサイト
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+    - テーマを選んだ理由-
+    　 ラーメンを食べるのが好きな自分が、もっと他の人と情報を共有したり、お気に入りのお店をリスト化したいと思ってました。そして自分以外にも同じような人がいるのではないか？と思いこのテーマにしました。
+    　
+    - ターゲットユーザ-
+    　 ラーメンを食べるのが好きな人
+    　
+    - 主な利用シーン-
+  　　   行きたいお店をを検索したり実際に行ったお店の投稿ができる

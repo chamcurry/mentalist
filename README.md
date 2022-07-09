@@ -12,3 +12,6 @@
     　
     - 主な利用シーン-
   　　   行きたいお店をを検索したり実際に行ったお店の投稿ができる
+  　　   
+  実装機能リストURL
+  https://docs.google.com/spreadsheets/d/1IzhRF75cf0Goo9X3VF1MXrTsPxqhnrgElrFRh0blVuw/edit?usp=sharing

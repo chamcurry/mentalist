@@ -8,6 +8,6 @@
     - ターゲットユーザ
        色々なラーメン店の評判が気になったり、ラーメンに関連する情報を共有したい人
     - 主な利用シーン
-       気になるラーメン店を検索したり投稿ができる
+       どのラーメンを食べにいくか決める判断材料や過去に行ったお店の記録としての利用
     - 実装機能リストURL
        https://docs.google.com/spreadsheets/d/1IzhRF75cf0Goo9X3VF1MXrTsPxqhnrgElrFRh0blVuw/edit?usp=sharing

@@ -12,6 +12,7 @@
   </head>
 
   <body>
+  <header>
    <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <%=link_to root_path do %>
       <%= image_tag "header_logo.png",width: '150px',class: "img-fluid"%>
@@ -20,6 +21,7 @@
      <span class="navbar-toggler-icon"></span>
     </button>
    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <% if admin_signed_in? %>
     <ul class="navbar-nav mx-auto">
       <li class="nav-item">
         <%= link_to admin_posts_path,class: "nav-link" do %>
@@ -37,20 +39,44 @@
         <% end %>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <% else %>
+     <ul class="navbar-nav mx-auto">
+      <li class="nav-item">
+        <%= link_to admin_posts_path,class: "nav-link" do %>
+         <i class="fas fa-adjust"></i>マイページ
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to admin_genres_path,class: "nav-link" do %>
+         <i class="fas fa-adjust"></i>投稿一覧
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to destroy_admin_session_path,class: "nav-link" do %>
+         <i class="fas fa-adjust"></i>新規投稿
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to destroy_admin_session_path,class: "nav-link" do %>
+         <i class="fas fa-adjust"></i>新規登録
+        <% end %>
+      </li>
+    </ul>
+    <% end %>
+     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+     </form>
+   </div>
    </nav>
-  </div>
-
-
-
-
-
-
+  </header>
 
     <%= yield %>
+  <footer class="footer">
+     <div class="fixed-bottom bg-light mx-auto">
+       <p class="text-muted text-center">© 2022 footer 何書こう…</p>
+     </div>
+  </footer>
     <%# bootstrap　%>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

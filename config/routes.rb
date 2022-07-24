@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   end
 
   root to: "homes#top"
+  devise_for :menbers
+  devise_for :admins
 
   resources :menbers,only:[:show,:edit,:update]
   patch "/menbers/withdraw" => "menbers#withdraw"
@@ -20,7 +22,6 @@ Rails.application.routes.draw do
     resources :comments,only:[:create,:destroy]
     resource :favorites,only:[:create,:destroy]
   end
-  devise_for :menbers
-  devise_for :admins
+  post '/homes/guest_sign_in' => 'homes#new_guest'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

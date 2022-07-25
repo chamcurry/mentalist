@@ -62,7 +62,6 @@ ActiveRecord::Schema.define(version: 2022_07_23_155847) do
 
   create_table "genres", force: :cascade do |t|
     t.string "soup"
-    t.string "noodle"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

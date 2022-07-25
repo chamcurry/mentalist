@@ -2,9 +2,6 @@ class Admin::GenresController < ApplicationController
   def index
      @genre = Genre.new
      @genres = Genre.all
-
-     search_soup = Genre.where("soup LIKE (?)","#{params[:soup]}").pluck(:id)
-     @genre_searched = Genre.where("search_soup IN (?) ",search_soup)
   end
 
   def create

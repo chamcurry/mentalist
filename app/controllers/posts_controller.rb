@@ -11,6 +11,10 @@ class PostsController < ApplicationController
   def show
   end
 
+  def search
+    @posts = Post.search(params:[:keyword])
+    @keyword = params[:keyword]
+  end
   def destroy
   end
 end

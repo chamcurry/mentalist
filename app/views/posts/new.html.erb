@@ -1,2 +1,25 @@
 <h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
+<%= form_with model: @post,url: posts_path do |f| %>
+        <div class="col-auto form_group mb-3 mx-auto">
+         <label>商品画像</label>
+         <%= f.file_field :image,class: "form-control-file-sm mx-auto"%>
+        </div>
+        <div class="col-auto form_group mb-2">
+          <label>商品名前</label>
+          <%=f.text_field :title,class: "form-text-sm mx-auto" %>
+        </div>
+        <div class="col-auto form_group mx-auto mb-2">
+          <label>商品説明</label>
+          <%=f.text_area :body,class: "form-text-sm mx-auto"%>
+        </div>
+        <!--<div class="col-auto form_group mb-2">-->
+        <!--  <label>ジャンル</label>-->
+        <!--  <span class="ml-4 ">-->
+        <!--   <%#= f.collection_select :genre_id, Genre.all, :id, :soup %>-->
+        <!--  </span>-->
+        <!--</div>-->
+
+        <div class="row form_group justify-content-center">
+          <%=f.submit "新規登録",class: "btn btn-success w-25"%>
+        </div>
+      <% end %>

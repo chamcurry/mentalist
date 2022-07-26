@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   root to: "homes#top"
   devise_for :menbers
   devise_for :admins
+  devise_scope :admin do
+     post '/menbers/guest_sign_in' => 'admin/sessions#new_guest'
+   end
 
   resources :menbers,only:[:show,:edit,:update]
   patch "/menbers/withdraw" => "menbers#withdraw"
@@ -23,6 +26,5 @@ Rails.application.routes.draw do
     resource :favorites,only:[:create,:destroy]
   end
   get 'search' => 'posts#search'
-  post '/homes/guest_sign_in' => 'homes#new_guest'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

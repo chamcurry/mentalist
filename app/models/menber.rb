@@ -8,4 +8,11 @@ class Menber < ApplicationRecord
   has_many :posts
   has_many :comments
   has_many :favorites
+
+ def self.guest
+   find_or_create_by!(email: 'guest_user@example.com') do |guest|
+    guest.password = SecureRandom.urlsafe_base64
+    # guest.password_confirmation = user.password
+  end
+ end
 end

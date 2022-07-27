@@ -5,7 +5,7 @@ class Menber < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one_attached :profile_image
-  has_many :posts
+  # has_many :posts
   has_many :comments
   has_many :favorites
 

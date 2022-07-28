@@ -2,7 +2,7 @@
 <%= form_with model: @post do |f| %>
         <div class="col-auto form_group mb-3 mx-auto">
          <label>商品画像</label>
-         <%= f.file_field :image,class: "form-control-file-sm mx-auto"%>
+         <%= f.file_field :image,accept: "images/*",class: "form-control-file-sm mx-auto"%>
         </div>
         <div class="col-auto form_group mb-2">
           <label>商品名前</label>

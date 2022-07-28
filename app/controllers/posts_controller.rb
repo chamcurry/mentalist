@@ -9,9 +9,11 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.save
-    redirect_to posts_path
-    # binding.pry
+   if @post.save
+      redirect_to admin_posts_path
+   else
+      render :new
+   end
   end
 
   def show
@@ -26,6 +28,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title,:body,:star,:image)
+    params.require(:post).permit(:menber_id,:title,:body,:star,:image)
   end
 end

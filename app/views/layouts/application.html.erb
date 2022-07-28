@@ -30,6 +30,11 @@
         <% end %>
       </li>
       <li class="nav-item">
+        <%= link_to admin_menbers_path,class: "nav-link" do %>
+         <i class="fas fa-adjust"></i>会員一覧
+        <% end %>
+      </li>
+      <li class="nav-item">
         <%= link_to admin_genres_path,class: "nav-link" do %>
          <i class="fas fa-adjust"></i>ジャンル
         <% end %>
@@ -58,7 +63,7 @@
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to destroy_admin_session_path,class: "nav-link" do %>
+        <%= link_to new_menber_registration_path,class: "nav-link" do %>
          <i class="fas fa-adjust"></i>新規登録
         <% end %>
       </li>
@@ -79,11 +84,6 @@
          <%= f.text_field :keyword, value: @keyword %>
          <%=f.submit '検索' %>
         <% end %>
-    </div>
-    <div class="post_list">
-        <%#@posts.each do |post| %>
-         <%#= post.title %>
-        <%# end %>
     </div>
     </div>
      <!--検索-->

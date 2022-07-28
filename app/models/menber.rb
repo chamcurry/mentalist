@@ -3,11 +3,10 @@ class Menber < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
   has_one_attached :profile_image
-  # has_many :posts
-  has_many :comments
-  has_many :favorites
+  has_many :posts
+  has_many :comments,dependent: :destroy
+  has_many :favorites,dependent: :destroy
 
  def self.guest
    find_or_create_by!(email: 'guest_user@example.com') do |guest|

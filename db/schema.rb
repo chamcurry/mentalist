@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 2022_07_23_155847) do
   end
 
   create_table "posts", force: :cascade do |t|
+    t.integer "menber_id"
     t.string "title"
     t.string "body"
     t.string "star"

@@ -13,8 +13,10 @@ Rails.application.routes.draw do
   end
 
   root to: "homes#top"
-  devise_for :admins
-  devise_for :menbers
+  devise_for :menber
+  devise_for :admin,skip:[:registrations,:passwords],controllers: {
+    sessions: "admin/sessions"
+  }
   devise_scope :admin do
      post '/menbers/guest_sign_in' => 'admin/sessions#new_guest'
    end

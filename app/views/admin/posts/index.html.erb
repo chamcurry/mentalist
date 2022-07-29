@@ -1,7 +1,37 @@
-<h1>Admin::Posts#index</h1>
-<p>Find me in app/views/admin/posts/index.html.erb</p>
-<%#if post.image.attached? %>
-  <%#image_tag image,size: "200x200" %>
-<%#else %>
-  <%#=image_tag "user",size: "200x200" %>
-<%# end %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+       <div class="h3 mt-5">投稿一覧</div>
+      <table class="table">
+        <thead class="bg-light">
+          <tr>
+            <th>商品ID</th>
+            <th>タイトル</th>
+            <th>本文</th>
+            <th>ジャンル</th>
+            <th>レビュー</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @kaminari.each do |post| %>
+          <tr>
+            <td>
+              <%=link_to post_path(post) do %>
+               <%= post.id %>
+              <% end %>
+            </td>
+            <td>
+               <%=post.title %>
+            </td>
+            <td><%= post.body %></td>
+            <!--genreのnameカラムを表示-->
+            <td><%#= post.genre.name %></td>
+            <td><%= post.star %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+    <%= paginate @kaminari,theme: 'twitter-bootstrap-4' %>
+</div>

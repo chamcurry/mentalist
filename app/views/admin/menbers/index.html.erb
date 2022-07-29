@@ -16,8 +16,13 @@
         <tbody>
         <% @kaminari.each do |menber| %>
           <tr>
-            <td><%= menber.id %></td>
             <td>
+              <%= link_to menber_path(menber) do %>
+               <%= menber.id %>
+              <% end %>
+            </td>
+            <td>
+              <!--メンバーの名前を保存後、クラスメソッドに変更する-->
                <%=menber.first_name %>
             </td>
             <td><%= menber.email %></td>

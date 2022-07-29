@@ -73,6 +73,11 @@
         <% end %>
       </li>
       <li class="nav-item">
+        <%= link_to new_menber_session_path,class: "nav-link" do %>
+         <i class="fas fa-adjust"></i>ログイン
+        <% end %>
+      </li>
+      <li class="nav-item">
         <%= link_to destroy_menber_session_path,method: :delete,class: "nav-link" do %>
          <i class="fas fa-adjust"></i>ログアウト
         <% end %>

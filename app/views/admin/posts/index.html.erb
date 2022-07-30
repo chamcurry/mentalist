@@ -5,28 +5,27 @@
       <table class="table">
         <thead class="bg-light">
           <tr>
-            <th>商品ID</th>
+            <th>会員名</th>
+            <th></th>
             <th>タイトル</th>
             <th>本文</th>
-            <th>ジャンル</th>
-            <th>レビュー</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
         <% @kaminari.each do |post| %>
           <tr>
-            <td>
-              <%=link_to post_path(post) do %>
-               <%= post.id %>
-              <% end %>
-            </td>
+            <td><%= post.menber.first_name %></td>
+            <% if post.image.attached? %>
+              <td><%=image_tag post.image,size: "100x100" %></td>
+            <% end %>
             <td>
                <%=post.title %>
             </td>
-            <td><%= post.body %></td>
-            <!--genreのnameカラムを表示-->
-            <td><%#= post.genre.name %></td>
-            <td><%= post.star %></td>
+            <td><%= post.body.truncate(10) %></td>
+            <td>
+              <%=link_to "詳細",post_path(post),class: "btn btn-success" %>
+            </td>
           </tr>
         <% end %>
         </tbody>

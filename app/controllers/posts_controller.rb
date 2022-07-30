@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   def create
     @post = current_menber.posts.new(post_params)
    if @post.save
-      redirect_to posts_path
+      redirect_to root_path
    else
       render :new
    end

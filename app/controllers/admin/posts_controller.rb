@@ -1,6 +1,6 @@
 class Admin::PostsController < ApplicationController
   def index
-    @posts =Post.all
+    @kaminari = Post.all.page(params[:page]).per(5)
   end
 
   def show

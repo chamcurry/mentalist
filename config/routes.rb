@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   devise_scope :admin do
      post '/menbers/guest_sign_in' => 'admin/sessions#new_guest'
    end
-
   resources :menbers,only:[:show,:edit,:update]
   patch "/menbers/withdraw" => "menbers#withdraw"
   resources :posts,only:[:index,:new,:create,:show,:destroy] do

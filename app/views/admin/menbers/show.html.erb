@@ -1,2 +1,37 @@
-<h1>Admin::Menbers#show</h1>
-<p>Find me in app/views/admin/menbers/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h5 class="m-4">
+        <%= @menber.first_name %><%= @meber.last_name %>さんの会員詳細
+      </h5>
+      <div class="row mt-3 mx-4">
+         会員ID
+       <div class="col">
+        <%=@menber.id %>
+       </div>
+      </div>
+      <div class="row mt-3 mx-4">
+         氏名
+       <div class="col">
+        <%=@menber.first_name %>
+        <%=@menber.last_name %>
+       </div>
+      </div>
+      <div class="row mt-3 mx-4">
+         メールアドレス
+       <div class="col">
+        <%=@menber.email %>
+       </div>
+      </div>
+      <div class="row  my-3 mx-4">
+         会員ステータス
+         <% if @menber.is_active == true %>
+          <div class="col">退会</div>
+         <%else%>
+          <div class="col">有効</div>
+         <% end %>
+      </div>
+      <%=link_to '編集する',admin_post_path(@menber),class: "btn btn-success mt-1 mx-4" %>
+    </div>
+  </div>
+</div>

@@ -8,9 +8,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_menber.posts.new(post_params)
    if @post.save
-      redirect_to admin_posts_path
+      redirect_to posts_path
    else
       render :new
    end

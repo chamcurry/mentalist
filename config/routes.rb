@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   end
 
   root to: "homes#top"
-  devise_for :menber
+  devise_for :menber,controllers: {
+    sessions: "menber/sessions"
+  }
   devise_for :admin,skip:[:registrations,:passwords],controllers: {
     sessions: "admin/sessions"
   }

@@ -3,6 +3,8 @@
 <% @posts.each do |post| %>
   <%=post.title%>
   <%=post.body%>
-  <%=image_tag post.image,size: "200x200"%>
+  <% if post.image.attached? %>
+    <%=image_tag post.image,size: "200x200"%>
+  <% end %>
   <%=post.star%>
 <% end %>

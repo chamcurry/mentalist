@@ -1,6 +1,7 @@
 class CreateGenres < ActiveRecord::Migration[5.0]
   def change
     create_table :genres do |t|
+      t.integer :post_id
       t.string :soup
       t.timestamps
     end

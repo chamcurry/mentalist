@@ -24,7 +24,7 @@
             </td>
             <td><%= post.body.truncate(10) %></td>
             <td>
-              <%=link_to "詳細",post_path(post),class: "btn btn-success" %>
+              <%=link_to "詳細",admin_post_path(post),class: "btn btn-success" %>
             </td>
           </tr>
         <% end %>

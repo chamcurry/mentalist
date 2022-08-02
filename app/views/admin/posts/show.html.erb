@@ -1,2 +1,47 @@
-<h1>Admin::Posts#show</h1>
-<p>Find me in app/views/admin/posts/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h5 class="m-4">
+        <%= @post.menber.full_name %>さんの会員詳細
+      </h5>
+      <div class="row mt-3 mx-4">
+         投稿ID
+       <div class="col">
+        <%=@post.id %>
+       </div>
+      </div>
+      <div class="row mt-3 mx-4">
+       <div class="col">
+        <% if @post.image.attached? %>
+            <%= image_tag @post.image,size: "200x200" %>
+        <% end %>
+       </div>
+      </div>
+      <div class="row mt-3 mx-4">
+         name
+       <div class="col">
+        <%=@post.menber.first_name %>
+        <%=@post.menber.last_name %>
+       </div>
+      </div>
+      <div class="row mt-3 mx-4">
+         タイトル
+       <div class="col">
+        <%=@post.title %>
+       </div>
+      </div>
+      <div class="row mt-3 mx-4">
+         本文
+       <div class="col">
+        <%=@post.body %>
+       </div>
+      </div>
+      <div class="row mt-3 mx-4">
+         レビュー
+       <div class="col">
+        <%=@post.star %>
+       </div>
+      </div>
+    </div>
+  </div>
+</div>

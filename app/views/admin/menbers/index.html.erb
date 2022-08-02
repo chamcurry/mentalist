@@ -32,7 +32,7 @@
             <%else%>
              <td>有効</td>
             <% end %>
-            <td><%= link_to "削除する",admin_menber_path(menber.id),method: :patch,data:{confirm: "退会させますか？"},class: "btn btn-danger"%></td>
+            <td><%= link_to "退会する",admin_menber_path(menber.id),method: :patch,data:{confirm: "退会させますか？"},class: "btn btn-danger"%></td>
           </tr>
         <% end %>
         </tbody>

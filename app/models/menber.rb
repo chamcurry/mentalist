@@ -7,10 +7,10 @@ class Menber < ApplicationRecord
   has_many :posts
   has_many :comments,dependent: :destroy
   has_many :favorites,dependent: :destroy
-# メンバーの名前を保存したら使用する
-# def full_name
-#     self.first_name + self.last_name
-# end
+
+def full_name
+    self.first_name + " " + self.last_name
+end
  def self.guest
    find_or_create_by!(email: 'guest_user@example.com') do |guest|
     guest.password = SecureRandom.urlsafe_base64

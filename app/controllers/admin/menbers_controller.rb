@@ -3,10 +3,6 @@ class Admin::MenbersController < ApplicationController
     @kaminari = Menber.all.page(params[:page]).per(5)
   end
 
-  def show
-    @menber = Menbrer.find(params[:id])
-  end
-
   def update
     @menber = Menber.find(params[:id])
     @menber.update(is_active: true)

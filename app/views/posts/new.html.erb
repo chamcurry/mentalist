@@ -2,7 +2,7 @@
 <% if @post.errors.any? %>
   <%=@post.errors.count %>件エラーが出ています。
 <% end %>
-<%= form_with model: @post do |f| %>
+  <%= form_with model: @post do |f| %>
     <div class="col-auto form_group mb-3 mx-auto">
      <label>商品画像</label>
      <%= f.file_field :image,accept: "images/*",class: "form-control-file-sm mx-auto"%>
@@ -22,10 +22,10 @@
     <div class="col-auto form_group mb-2">
       <label>ジャンル</label>
       <span class="ml-4 ">
-       <%= f.collection_select(:genre_id, @genres, :id, :soup %>)
+       <%= f.collection_select(:genre_id, Genre.all, :id, :soup) %>
       </span>
     </div>
     <div class="row form_group justify-content-center">
       <%=f.submit "新規登録",class: "btn btn-success w-25"%>
     </div>
-<% end %>
+  <% end %>

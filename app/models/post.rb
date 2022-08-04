@@ -1,8 +1,8 @@
 class Post < ApplicationRecord
   belongs_to :menber
+  belongs_to :genre
   has_many :comments,dependent: :destroy
   has_many :favorites,dependent: :destroy
-  has_many :genres,dependent: :destroy
   has_many :post_genres,dependent: :destroy
   has_one_attached :image
 

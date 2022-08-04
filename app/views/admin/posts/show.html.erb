@@ -20,7 +20,9 @@
       <div class="row mt-3 mx-4">
          ジャンル
        <div class="col">
-        <%=@post.genre.ids %>
+       <% if @post.genre.present? %>
+         <%=@post.genre.soup %>
+       <% end %>
        </div>
       </div>
       <div class="row mt-3 mx-4">

@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   get "/admin" => "admin/homes#top"
   namespace :admin do
-    resources :menbers,only:[:index,:show,:update]
+    resources :menbers,only:[:index,:update]
   end
 
   namespace :admin do
-    resources :genres,only:[:index,:create,:show,:update,:destroy]
+    resources :genres,only:[:index,:create,:destroy]
   end
 
   namespace :admin do

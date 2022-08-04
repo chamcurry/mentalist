@@ -19,12 +19,12 @@
       <label>レビュー</label>
       <%=f.text_area :star,class: "form-text-sm mx-auto"%>
     </div>
-    <!--<div class="col-auto form_group mb-2">-->
-    <!--  <label>ジャンル</label>-->
-    <!--  <span class="ml-4 ">-->
-    <!--   <%#= f.collection_select :genre_id, Genre.all, :id, :soup %>-->
-    <!--  </span>-->
-    <!--</div>-->
+    <div class="col-auto form_group mb-2">
+      <label>ジャンル</label>
+      <span class="ml-4 ">
+       <%= f.collection_select(:genre_id, @genres, :id, :soup %>)
+      </span>
+    </div>
     <div class="row form_group justify-content-center">
       <%=f.submit "新規登録",class: "btn btn-success w-25"%>
     </div>

@@ -1,4 +1,4 @@
 class Genre < ApplicationRecord
-  has_many :posts,dependent: :destroy
+  belongs_to :post
   has_many :post_genres,dependent: :destroy
 end

@@ -61,7 +61,6 @@ ActiveRecord::Schema.define(version: 2022_07_31_085214) do
   end
 
   create_table "genres", force: :cascade do |t|
-    t.integer "post_id"
     t.string "soup"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -93,7 +92,6 @@ ActiveRecord::Schema.define(version: 2022_07_31_085214) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "menber_id"
-    t.integer "genre_id"
     t.string "title"
     t.string "body"
     t.string "star"

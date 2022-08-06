@@ -19,11 +19,14 @@
       </div>
       <div class="row mt-3 mx-4">
          ジャンル
-       <div class="col">
-       <% if @post.genre.present? %>
-         <%=@post.genre.soup %>
+       <!--<div class="col">-->
+         <%#=@post.genre_id.soup %>
+       <!--</div>-->
+       <% if @post.genres.present? %>
+         <% @post.genres.each do |genre| %>
+          <span class= 'badge badge-primary'><%= genre.soup %></span>
+         <% end %>
        <% end %>
-       </div>
       </div>
       <div class="row mt-3 mx-4">
          タイトル

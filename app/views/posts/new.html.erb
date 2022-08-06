@@ -1,7 +1,9 @@
-<h1>Posts#new</h1>
+<h1>投稿をする</h1>
 <% if @post.errors.any? %>
   <%=@post.errors.count %>件エラーが出ています。
 <% end %>
+<div class="container">
+
   <%= form_with model: @post do |f| %>
     <div class="col-auto form_group mb-3 mx-auto">
      <label>商品画像</label>
@@ -21,11 +23,19 @@
     </div>
     <div class="col-auto form_group mb-2">
       <label>ジャンル</label>
-      <span class="ml-4 ">
-       <%= f.collection_select(:genre_id, Genre.all, :id, :soup) %>
-      </span>
+      <div class="ml-4 ">
+        <%= f.collection_check_boxes( :genre_ids, Genre.all, :id, :soup) do |genre| %>
+          <div class="form_check">
+            <%= genre.label class: 'form-check-label' do %>
+              <%=genre.check_box class: 'form-check-input' %>
+              <%= genre.text %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
-    <div class="row form_group justify-content-center">
-      <%=f.submit "新規登録",class: "btn btn-success w-25"%>
+    <div class="row form_group mb-5 justify-content-center">
+      <%=f.submit "投稿する",class: "btn btn-success w-25"%>
     </div>
   <% end %>
+</div>

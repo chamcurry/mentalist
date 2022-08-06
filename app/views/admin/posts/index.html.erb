@@ -13,7 +13,7 @@
           </tr>
         </thead>
         <tbody>
-        <% @kaminari.each do |post| %>
+        <% @kaminari.last(3).each do |post| %>
           <tr>
             <td><%= post.menber.full_name %></td>
           <% if post.image.attached? %>

@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all
-    @genres = Genre.all
+    # @posts = Post.all
+     @posts = params[:genre_id].present? ? Genre.find(params[:genre_id]).posts: Post.all
   end
 
   def new

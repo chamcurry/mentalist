@@ -4,7 +4,7 @@
 　<%= select_tag :genre_id,options_from_collection_for_select(Genre.all,:id,:soup,params[:genre_id]),{prompt: 'タグで検索',onchange: 'submit(this.form);'}%>
 　<!--キーワード検索-->
 　<%= text_field_tag :search %>
-　<%= submit_tag "キーワード検索",:title => nill%>
+　<%= submit_tag "キーワード検索" %>
 <% end %>
 <% @posts.each do |post| %>
   <%=post.title%>

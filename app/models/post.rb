@@ -7,10 +7,10 @@ class Post < ApplicationRecord
   has_one_attached :image
   validates :title,:body,:image,:star,presence: true
 
-  def self.search(keyword)
+  def self.search(search)
     if search
-      # titleまたはbodyカラムに前方一致している文字列を検索する
-      where(["title like?","%#{keyword}"])
+      # titleまたはbodyカラムに部分一致している文字列を検索する
+      where(["title like?","%#{search}%"])
     else
       all
     end

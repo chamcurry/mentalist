@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
   def index
-    # @posts = Post.all
-     @posts = params[:genre_id].present? ? Genre.find(params[:genre_id]).posts: Post.all
+    # 該当するジャンルを検索。なければ全てを表示する
+     @genres = params[:genre_id].present? ? Genre.find(params[:genre_id]).posts: Post.all
+     @posts = Post.all.page(params[:page]).per(5).search(params[:keyword])
   end
-
   def new
     @post = Post.new
   end

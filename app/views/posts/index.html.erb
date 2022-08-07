@@ -1,12 +1,11 @@
 <h1>投稿一覧</h1>
 <%= form_with url: posts_path,method: :get, class: 'boards_searchForm' do %>
-    <%=select_tag :genre_id,options_from_collection_for_select(Genre.all,:id,:soup,params[:genre_id]),
-      {
-        prompt: 'タグで検索',
-        onchange: 'submit(this.form);'
-      }%>
-    <% end %>
-
+  <!--ジャンル検索-->
+　<%= select_tag :genre_id,options_from_collection_for_select(Genre.all,:id,:soup,params[:genre_id]),{prompt: 'タグで検索',onchange: 'submit(this.form);'}%>
+　<!--キーワード検索-->
+　<%= text_field_tag :search %>
+　<%= submit_tag "キーワード検索",:title => nill%>
+<% end %>
 <% @posts.each do |post| %>
   <%=post.title%>
   <%=post.body%>
@@ -18,4 +17,5 @@
   <% post.genres.each do |genre| %>
      <span class= 'badge badge-primary'><%= genre.soup %></span>
   <% end %>
+  <%= paginate @posts,theme: 'twitter-bootstrap-4' %>
 <% end %>

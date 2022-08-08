@@ -7,14 +7,15 @@ class Menber < ApplicationRecord
   has_many :posts
   has_many :comments,dependent: :destroy
   has_many :favorites,dependent: :destroy
-
-def full_name
-    self.first_name + " " + self.last_name
-end
- def self.guest
-   find_or_create_by!(email: 'guest_user@example.com') do |guest|
-    guest.password = SecureRandom.urlsafe_base64
-    # guest.password_confirmation = user.password
+  # validates :first_name,:last_name,presence: true
+  def full_name
+      self.first_name + " " + self.last_name
   end
- end
+      # ゲストユーザー
+  def self.guest_user
+    find_or_create_by!(email: 'guest_user@example.com') do |guest|
+      guest.password = SecureRandom.urlsafe_base64
+      # guest.password_confirmation = user.password
+    end
+  end
 end

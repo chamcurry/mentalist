@@ -2,10 +2,10 @@
 
 class Admin::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-  def new_guest
-    guest = Menber.guest
+  def guest_log_in
+    guest = Menber.guest_user
     sign_in guest   # ユーザーをログインさせる
-    redirect_to posts_path, notice: 'ゲストユーザーとしてログインしました。'
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
   end
   # def new_guest
   #   guest = Menber.find_by(email: 'guest_user@example.com')

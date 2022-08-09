@@ -1,13 +1,12 @@
 <h1>投稿一覧</h1>
-<%= form_with url: posts_path,method: :get, class: 'boards_searchForm' do |f|%>
+<%= form_with url: posts_path,method: :get do %>
   <!--ジャンル検索-->
-　　<%= f.select :genre_id,options_from_collection_for_select(Genre.all,:id,:soup,params[:genre_id]),{prompt: 'タグで検索',onchange: 'submit(this.form);'}%>
+　　<%= select_tag :genre_ids,options_from_collection_for_select(Genre.all,:id,:soup,params[:genre_id]),{prompt: 'タグで検索'}%>
 　<!--キーワード検索-->
-　<%= f.text_field :search,placeholder: "キーワードを入力" %>
-　<%= f.submit "検索",:name => nil %>
+　<%= text_field_tag :search,nil,placeholder: "キーワードを入力" %>
+　<%= submit_tag "検索",:name => nil %>
 <% end %>
-<%= @submit_key %>
-<%= @submit_genre %>
+
 <% @posts.each do |post| %>
   <%=post.title%>
   <%=post.body%>

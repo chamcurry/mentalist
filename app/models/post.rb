@@ -7,11 +7,11 @@ class Post < ApplicationRecord
   has_one_attached :image
   validates :title,:body,:image,:star,presence: true
 
-  def self.search(search)
-    if search
-      Post.where(["title like ?","%#{search}%"])
-    else
-      Post.all
-    end
-  end
+  # def self.search(search)
+  #   if search
+  #     Post.where(["title like ?","%#{search}%"])
+  #   else
+  #     Post.all
+  #   end
+  # end
 end

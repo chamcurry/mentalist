@@ -13,24 +13,20 @@
           </tr>
         </thead>
         <tbody>
-        <% @kaminari.last(3).each do |post| %>
+        <% @posts.last(3).each do |post| %>
           <tr>
             <td><%= post.menber.full_name %></td>
           <% if post.image.attached? %>
             <td><%= image_tag post.image,size: "100x100" %></td>
           <% end %>
-            <td>
-               <%= post.title %>
-            </td>
+            <td><%= post.title %></td>
             <td><%= post.body.truncate(10) %></td>
-            <td>
-              <%=link_to "詳細",admin_post_path(post),class: "btn btn-success" %>
-            </td>
+            <td><%=link_to "詳細",admin_post_path(post),class: "btn btn-success" %></td>
           </tr>
         <% end %>
         </tbody>
       </table>
     </div>
   </div>
-    <%= paginate @kaminari,theme: 'twitter-bootstrap-4' %>
+    <%= paginate @posts,theme: 'twitter-bootstrap-4' %>
 </div>

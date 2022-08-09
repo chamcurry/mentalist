@@ -1,6 +1,7 @@
 class Admin::PostsController < ApplicationController
+   before_action :authenticate_admin!
   def index
-    @kaminari = Post.all.page(params[:page]).per(5)
+    @posts = Post.all.page(params[:page]).per(5)
   end
 
   def show

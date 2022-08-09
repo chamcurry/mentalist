@@ -1,7 +1,7 @@
 <h1>投稿一覧</h1>
 <%= form_with url: posts_path,method: :get do %>
   <!--ジャンル検索-->
-　　<%= select_tag :genre_ids,options_from_collection_for_select(Genre.all,:id,:soup,params[:genre_id]),{prompt: 'タグで検索'}%>
+　　<%= select_tag :genre_id,options_from_collection_for_select(Genre.all,:id,:soup,params[:genre_id]),{prompt: 'タグを選択'}%>
 　<!--キーワード検索-->
 　<%= text_field_tag :search,nil,placeholder: "キーワードを入力" %>
 　<%= submit_tag "検索",:name => nil %>

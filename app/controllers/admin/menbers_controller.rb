@@ -1,4 +1,5 @@
 class Admin::MenbersController < ApplicationController
+  before_action :authenticate_admin!
   def index
     @kaminari = Menber.all.page(params[:page]).per(5)
   end

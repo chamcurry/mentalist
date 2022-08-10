@@ -11,12 +11,12 @@
     <%= javascript_include_tag 'application'%>
   </head>
 
-  <body>
+  <body class="bg-light">
   <header>
      <%= flash[:notice] %>
-   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+   <nav class="navbar navbar-expand-lg navbar-light bg-white py-0 h6">
      <%=link_to root_path do %>
-       <%= image_tag "header_logo.png",width: '150px',class: "img-fluid"%>
+       <%= image_tag "header_logo.png",width: '120px',class: "img-fluid"%>
      <% end %>
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
        <span class="navbar-toggler-icon"></span>
@@ -24,9 +24,9 @@
      <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <% if admin_signed_in? %>
      <ul class="navbar-nav mx-auto">
-      <li class="nav-item">
+      <li class="nav-item ">
         <%= link_to admin_posts_path,class: "nav-link" do %>
-         <i class="fas fa-adjust"></i>投稿一覧
+         <i class="fas fa-adjust "></i>投稿一覧
         <% end %>
       </li>
       <li class="nav-item">
@@ -49,46 +49,46 @@
      <ul class="navbar-nav mx-auto">
       <li class="nav-item">
         <%= link_to admin_posts_path,class: "nav-link" do %>
-         <i class="fas fa-adjust"></i>マイページ
+        マイページ
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to posts_path,class: "nav-link" do %>
-         <i class="fas fa-adjust"></i>投稿一覧
+         投稿一覧
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to new_post_path,class: "nav-link" do %>
-         <i class="fas fa-adjust"></i>新規投稿
+         新規投稿
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to new_menber_registration_path,class: "nav-link" do %>
-         <i class="fas fa-adjust"></i>新規登録
+         新規登録
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to menbers_guest_sign_in_path,method: :post,class: "nav-link" do %>
-         <i class="fas fa-adjust"></i>ゲスト体験
+         ゲスト体験
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to new_menber_session_path,class: "nav-link" do %>
-         <i class="fas fa-adjust"></i>ログイン
+        ログイン
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to destroy_menber_session_path,method: :delete,class: "nav-link" do %>
-         <i class="fas fa-adjust"></i>ログアウト
+         ログアウト
         <% end %>
       </li>
      </ul>
     <% end %>
    </nav>
   </header>
-  <%= yield %>
+   <%= yield %>
    <footer class="footer">
-     <div class="fixed-bottom bg-light  mx-auto">
+     <div class="fixed-bottom bg-white  mx-auto">
        <p class="text-muted text-center">© 2022 footer 何書こう…</p>
      </div>
    </footer>

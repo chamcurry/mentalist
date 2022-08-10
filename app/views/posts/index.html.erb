@@ -13,7 +13,20 @@
   <% if post.image.attached? %>
     <%=image_tag post.image,size: "200x200"%>
   <% end %>
-  <%=post.star%>
+  <span>評価：</span>
+  <span id="star-rate-<%= post.id %>"></span>
+  <script>
+    $('#star-rate-<%= post.id %>').raty({
+      size: 36,
+      starOff: "<%= asset_path('star-off.png') %>",
+      starOn: "<%= asset_path('star-on.png') %>",
+      starHalf: "<%= asset_path('star-half.png') %>",
+      half: true,
+      readOnly: true,
+      score: <%= post.star %>
+    });
+  </script>
+  <%= post.star %>
   <% post.genres.each do |genre| %>
      <span class= 'badge badge-primary'><%= genre.soup %></span>
   <% end %>

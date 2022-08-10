@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 2022_07_31_085214) do
     t.integer "menber_id"
     t.string "title"
     t.string "body"
-    t.string "star"
+    t.float "star"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

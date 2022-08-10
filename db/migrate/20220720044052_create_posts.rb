@@ -4,7 +4,7 @@ class CreatePosts < ActiveRecord::Migration[5.0]
       t.integer :menber_id
       t.string :title
       t.string :body
-      t.string :star
+      t.float :star
       t.timestamps
     end
   end

@@ -17,9 +17,21 @@
       <label>商品説明</label>
       <%=f.text_area :body,class: "form-text-sm mx-auto"%>
     </div>
-    <div class="col-auto form_group mx-auto mb-2">
+    <div class="col-auto form_group mx-auto mb-2" id="star">
       <label>レビュー</label>
-      <%=f.text_area :star,class: "form-text-sm mx-auto"%>
+      <%= f.label :star, "星評価：" %>
+      <%= f.hidden_field :star, id: :review_star %>
+      <script>
+        $('#star').empty();
+        $('#star').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          scoreName: 'post[star]',
+          half: true,
+        });
+      </script>
     </div>
     <div class="col-auto form_group mb-2">
       <label>ジャンル</label>

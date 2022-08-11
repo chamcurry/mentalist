@@ -96,13 +96,13 @@
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to menbers_guest_sign_in_path,method: :post,class: "nav-link" do %>
-         ゲスト体験
+        <%= link_to new_menber_session_path,class: "nav-link" do %>
+        ログイン
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to new_menber_session_path,class: "nav-link" do %>
-        ログイン
+        <%= link_to menbers_guest_sign_in_path,method: :post,class: "nav-link" do %>
+         ゲスト体験
         <% end %>
       </li>
      </ul>

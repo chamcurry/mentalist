@@ -22,7 +22,8 @@ Rails.application.routes.draw do
   devise_scope :admin do
      post '/menbers/guest_sign_in' => 'admin/sessions#guest_log_in'
    end
-  resources :menbers,only:[:show,:edit,:update]
+  resources :menbers,only:[:edit,:update]
+  get "/menbers/my_page" => "menbers#show"
   patch "/menbers/withdraw" => "menbers#withdraw"
   resources :posts,only:[:index,:new,:create,:show,:destroy] do
     resources :comments,only:[:create,:destroy]

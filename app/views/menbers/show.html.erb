@@ -1,2 +1,21 @@
-<h1>Menbers#show</h1>
-<p>Find me in app/views/menbers/show.html.erb</p>
+<div class="container">
+  <div class="row h4 m-3">マイページ</div>
+  <div class="row mt-4 ml-1">
+    <div class=" d-flex align-items-center font-weight-bold">登録情報</div>
+    <%=link_to "編集する",menber_edit_path,class: 'btn btn-success btn-sm ml-3' %>
+  </div>
+  <table class="table mt-3 table-bordered">
+    <tr><th>氏名</th><td><%=current_customer.first_name %><%=current_customer.last_name %></td></tr>
+    <tr><th>メールアドレス</th><td><%= current_customer.email %></td></tr>
+  </table>
+
+  <div class="row mx-3">
+     <div class=" d-flex align-items-center font-weight-bold">配送先</div>
+     <%=link_to "一覧を見る",addresses_path,class: "btn btn-primary btn-sm ml-5" %>
+  </div>
+  <div class="row m-3">
+     <div class=" d-flex font-weight-bold">注文履歴　</div>
+     <%=link_to "一覧を見る",orders_path,class: "btn btn-primary btn-sm ml-3" %>
+  </div>
+  
+</div>

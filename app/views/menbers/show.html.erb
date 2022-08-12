@@ -1,21 +1,39 @@
-<div class="container">
-  <div class="row h4 m-3">マイページ</div>
-  <div class="row mt-4 ml-1">
-    <div class=" d-flex align-items-center font-weight-bold">登録情報</div>
-    <%=link_to "編集する",menber_edit_path,class: 'btn btn-success btn-sm ml-3' %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-sm-offset-3">
+      <div><p>プロフィール</p></div>
+      <%=@posts.length %>投稿数
+      <%=current_menber.full_name %>
+      <%=current_menber.email %>
+      <%=link_to edit_menbers_path,class: "btn btn-success" do %>
+        編集する
+      <% end %>
+    </div>
+    <div class="sidebar col-sm-9 overflow-auto columns" style="width:18rem">
+      <p>Sidebar</p>
+      <% @posts.each do |post| %>
+        <%=post.title%>
+        <% if post.image.attached? %>
+          <%=image_tag post.image,size: "200x200"%>
+        <% end %>
+        <!--<span>評価：</span>-->
+        <div id="star-rate-<%= post.id %>"></div>
+        <script>
+          $('#star-rate-<%= post.id %>').raty({
+            size: 36,
+            starOff: "<%= asset_path('star-off.png') %>",
+            starOn: "<%= asset_path('star-on.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            half: true,
+            readOnly: true,
+            score: <%= post.star %>
+          });
+        </script>
+        <!--<%= post.star %>レビュー整数-->
+        <% post.genres.each do |genre| %>
+           <span class= 'badge badge-primary'><%= genre.soup %></span>
+        <% end %>
+      <% end %>
+    </div>
   </div>
-  <table class="table mt-3 table-bordered">
-    <tr><th>氏名</th><td><%=current_customer.first_name %><%=current_customer.last_name %></td></tr>
-    <tr><th>メールアドレス</th><td><%= current_customer.email %></td></tr>
-  </table>
-
-  <div class="row mx-3">
-     <div class=" d-flex align-items-center font-weight-bold">配送先</div>
-     <%=link_to "一覧を見る",addresses_path,class: "btn btn-primary btn-sm ml-5" %>
-  </div>
-  <div class="row m-3">
-     <div class=" d-flex font-weight-bold">注文履歴　</div>
-     <%=link_to "一覧を見る",orders_path,class: "btn btn-primary btn-sm ml-3" %>
-  </div>
-  
 </div>

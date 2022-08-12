@@ -11,4 +11,9 @@ class MenbersController < ApplicationController
   end
   def withdraw
   end
+
+  private
+  def menber_params
+   params.require(:menber).permit(:last_name,:first_name,:is_active,:profile_image)
+  end
 end

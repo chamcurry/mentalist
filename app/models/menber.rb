@@ -7,9 +7,17 @@ class Menber < ApplicationRecord
   has_many :posts
   has_many :comments,dependent: :destroy
   has_many :favorites,dependent: :destroy
-  # validates :first_name,:last_name,presence: true
+  validates :first_name,:last_name,presence: true
   def full_name
       self.first_name + " " + self.last_name
+  end
+
+  def get_profile_image
+    unless profile_image.attached?
+      file_path = Rails.root.join('app/assets/images/user.png')
+      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    end
+   profile_image
   end
       # ゲストユーザー
   def self.guest_user

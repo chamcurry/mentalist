@@ -1,39 +1,64 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-3 col-sm-offset-3">
-      <div><p>プロフィール</p></div>
-      <%=@posts.length %>投稿数
-      <%=current_menber.full_name %>
-      <%=current_menber.email %>
-      <%=link_to edit_menbers_path,class: "btn btn-success" do %>
-        編集する
-      <% end %>
+  <div class="row mt-3">
+    <div class="col-sm-5 col-sm-offset-3 d-flex flex-column align-items-center">
+      <p>プロフィール</p>
+      <div class= "border border-dark"><%=image_tag current_menber.get_profile_image,size: "200x200" %></div>
+      <div class="my-3 float-left">
+        <h5>投稿数:
+          <%=@posts.length %>
+        </h5>
+        <h5>ユーザー名</h5>
+        <div class= "border-bottom border-dark mb-2">
+          <%=current_menber.full_name %>
+        </div>
+        <h5>メールアドレス:</h5>
+        <div class= "border-bottom border-dark mb-2">
+          <%=current_menber.email %>
+        </div>
+      </div>
+          <%=link_to edit_menbers_path,class: "btn btn-success mb-2" do %>
+            編集する
+          <% end %>
     </div>
-    <div class="sidebar col-sm-9 overflow-auto columns" style="width:18rem">
-      <p>Sidebar</p>
-      <% @posts.each do |post| %>
-        <%=post.title%>
-        <% if post.image.attached? %>
-          <%=image_tag post.image,size: "200x200"%>
+    <div class="sidebar col-lg-7 overflow-auto">
+      <p class="text-center">投稿リスト</p>
+        <% @posts.each do |post| %>
+          <div class="card md-3 mb-2">
+            <div class="row">
+             <div class="col-sm-4">
+             <%=link_to post_path(post) do %>
+              <% if post.image.attached? %>
+               <%=image_tag post.image,size: "220x200",class: "text-success"%>
+              <% end %>
+             <% end %>
+             </div>
+            <div class="card-body">
+             <div class="col-md-8">
+                <div><%=post.created_at.strftime('%Y/%m/%d')%></div>
+                <h5><%=post.title%></h5>
+                <% post.genres.each do |genre| %>
+                   <span class= 'badge badge-primary'><%= genre.soup %></span>
+                <% end %>
+                <div><%= post.body.truncate(13) %></div>
+                <!--<span>評価：</span>-->
+                <div id="star-rate-<%= post.id %>"></div>
+                <script>
+                  $('#star-rate-<%= post.id %>').raty({
+                    size: 36,
+                    starOff: "<%= asset_path('star-off.png') %>",
+                    starOn: "<%= asset_path('star-on.png') %>",
+                    starHalf: "<%= asset_path('star-half.png') %>",
+                    half: true,
+                    readOnly: true,
+                    score: <%= post.star %>
+                  });
+                </script>
+                <!--<%= post.star %>レビュー整数-->
+             </div>
+           </div>
+            </div>
+          </div>
         <% end %>
-        <!--<span>評価：</span>-->
-        <div id="star-rate-<%= post.id %>"></div>
-        <script>
-          $('#star-rate-<%= post.id %>').raty({
-            size: 36,
-            starOff: "<%= asset_path('star-off.png') %>",
-            starOn: "<%= asset_path('star-on.png') %>",
-            starHalf: "<%= asset_path('star-half.png') %>",
-            half: true,
-            readOnly: true,
-            score: <%= post.star %>
-          });
-        </script>
-        <!--<%= post.star %>レビュー整数-->
-        <% post.genres.each do |genre| %>
-           <span class= 'badge badge-primary'><%= genre.soup %></span>
-        <% end %>
-      <% end %>
     </div>
   </div>
 </div>

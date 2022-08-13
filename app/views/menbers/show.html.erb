@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row mt-3">
-    <div class="col-sm-5 col-sm-offset-3 d-flex flex-column align-items-center">
+    <div class="col-sm-5  d-flex flex-column align-items-center">
       <p>プロフィール</p>
       <div class= "border border-dark"><%=image_tag current_menber.get_profile_image,size: "200x200" %></div>
       <div class="my-3 float-left">
@@ -23,7 +23,7 @@
     <div class="sidebar col-lg-7 overflow-auto">
       <p class="text-center">投稿リスト</p>
         <% @posts.each do |post| %>
-          <div class="card md-3 mb-2">
+          <div class="card mb-2">
             <div class="row">
              <div class="col-sm-4">
              <%=link_to post_path(post) do %>

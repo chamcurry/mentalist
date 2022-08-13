@@ -1,9 +1,44 @@
-<div class="container-fluid">
-  <div class="img-fluid card">
-    <%=image_tag "top_page",width: "100%",height: "50%" %>
-     <p class="card-img-overlay h4 text-center text-white d-flex align-items-center justify-content-center">
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <div class="row">
+      <p class="col h3 text-light d-flex justify-content-center">
        ようこそ麺Listへ<br>
-       ラーメンのレビューサイトになります。
-     </p>
+      </p>
+    </div>
   </div>
 </div>
+  <div class="container">
+    <p class="text-center">新着投稿</p>
+   <div class="card-deck">
+        <% @posts.last(4).each do |post| %>
+          <div class="card mb-2 p-0">
+              <%=link_to post_path(post) do %>
+                <% if post.image.attached? %>
+                 <%=image_tag post.image,size: "208x200"%>
+                <% end %>
+              <% end %>
+            <div class="card-body p-0">
+                <div><%=post.created_at.strftime('%Y/%m/%d')%></div>
+                <h5 class= "card-title"><%=post.title%></h5>
+                <% post.genres.each do |genre| %>
+                  <span class= 'badge badge-primary'><%= genre.soup %></span>
+                <% end %>
+                <!--<span>評価：</span>-->
+                <span id="star-rate-<%= post.id %>"></span>
+                <script>
+                  $('#star-rate-<%= post.id %>').raty({
+                    size: 36,
+                    starOff: "<%= asset_path('star-off.png') %>",
+                    starOn: "<%= asset_path('star-on.png') %>",
+                    starHalf: "<%= asset_path('star-half.png') %>",
+                    half: true,
+                    readOnly: true,
+                    score: <%= post.star %>
+                  });
+                </script>
+                <span class="ml-2"><%= post.star %></span>
+              </div>
+          </div>
+        <% end %>
+   </div>
+  </div>

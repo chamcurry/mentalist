@@ -1,34 +1,46 @@
-<h1>投稿一覧</h1>
 <%= form_with url: posts_path,method: :get do %>
   <!--ジャンル検索-->
-　　<%= select_tag :genre_id,options_from_collection_for_select(Genre.all,:id,:soup,params[:genre_id]),{prompt: 'タグを選択'}%>
+　<%= select_tag :genre_id,options_from_collection_for_select(Genre.all,:id,:soup,params[:genre_id]),{prompt: 'タグを選択'}%>
 　<!--キーワード検索-->
 　<%= text_field_tag :search,nil,placeholder: "キーワードを入力" %>
-　<%= submit_tag "検索",:name => nil %>
+　<%= submit_tag "検索" %>
 <% end %>
 
-<% @posts.each do |post| %>
-  <%=post.title%>
-  <%=post.body%>
-  <% if post.image.attached? %>
-    <%=image_tag post.image,size: "200x200"%>
-  <% end %>
-  <span>評価：</span>
-  <span id="star-rate-<%= post.id %>"></span>
-  <script>
-    $('#star-rate-<%= post.id %>').raty({
-      size: 36,
-      starOff: "<%= asset_path('star-off.png') %>",
-      starOn: "<%= asset_path('star-on.png') %>",
-      starHalf: "<%= asset_path('star-half.png') %>",
-      half: true,
-      readOnly: true,
-      score: <%= post.star %>
-    });
-  </script>
-  <%= post.star %>
-  <% post.genres.each do |genre| %>
-     <span class= 'badge badge-primary'><%= genre.soup %></span>
-  <% end %>
-<% end %>
+<p class="text-center">投稿リスト</p>
+        <% @posts.each do |post| %>
+          <div class="card mb-2">
+            <div class="row">
+             <div class="col-sm-4">
+             <%=link_to post_path(post) do %>
+              <% if post.image.attached? %>
+               <%=image_tag post.image,size: "220x200",class: "text-success"%>
+              <% end %>
+             <% end %>
+             </div>
+            <div class="card-body">
+             <div class="col-md-8">
+                <div><%=post.created_at.strftime('%Y/%m/%d')%></div>
+                <h5><%=post.title%></h5>
+                <% post.genres.each do |genre| %>
+                  <span class= 'badge badge-primary'><%= genre.soup %></span>
+                <% end %>
+                <div><%= post.body.truncate(13) %></div>
+                <div id="star-rate-<%= post.id %>"></div>
+                <script>
+                  $('#star-rate-<%= post.id %>').raty({
+                    size: 36,
+                    starOff: "<%= asset_path('star-off.png') %>",
+                    starOn: "<%= asset_path('star-on.png') %>",
+                    starHalf: "<%= asset_path('star-half.png') %>",
+                    half: true,
+                    readOnly: true,
+                    score: <%= post.star %>
+                  });
+                </script>
+                <%= post.star %>
+             </div>
+           </div>
+            </div>
+          </div>
+        <% end %>
   <%#= paginate @posts,theme: 'twitter-bootstrap-4' %>

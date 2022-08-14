@@ -25,15 +25,26 @@
         <% @posts.each do |post| %>
           <div class="card mb-2">
             <div class="row">
-             <div class="col-sm-4">
-             <%=link_to post_path(post) do %>
-              <% if post.image.attached? %>
-               <%=image_tag post.image,size: "220x200",class: "text-success"%>
-              <% end %>
-             <% end %>
-             </div>
+              <div class="col-sm-4">
+               <%=link_to post_path(post) do %>
+                  <% if post.image.attached? %>
+                   <%=image_tag post.image,size: "220x200",class: "text-success"%>
+                  <% end %>
+               <% end %>
+              </div>
             <div class="card-body">
              <div class="col-md-8">
+              <% if post.favorited?(current_menber) %>
+                 <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
+                <%= link_to post_favorite_path(post.id), method: :delete do %>
+                    <span style="color:red;">❤︎</span>
+                <% end %>
+              <% else %>
+                <!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
+                <%= link_to post_favorites_path(post.id), method: :post do %>
+                    <span>❤︎</span>
+                <% end %>
+              <% end %>
                 <div><%=post.created_at.strftime('%Y/%m/%d')%></div>
                 <h5><%=post.title%></h5>
                 <% post.genres.each do |genre| %>

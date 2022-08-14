@@ -4,7 +4,7 @@ class Menber < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one_attached :profile_image
-  has_many :posts
+  has_many :posts,dependent: :destroy
   has_many :comments,dependent: :destroy
   has_many :favorites,dependent: :destroy
   validates :first_name,:last_name,presence: true
@@ -25,5 +25,10 @@ class Menber < ApplicationRecord
       guest.password = SecureRandom.urlsafe_base64
       # guest.password_confirmation = user.password
     end
+  end
+
+  def favorited?(menber)
+  # favoritesテーブルに存在するか判断
+   favorites.where(menber_id: menber.id).exists?
   end
 end

@@ -1,53 +1,59 @@
-<h1>投稿をする</h1>
 <% if @post.errors.any? %>
   <%=@post.errors.count %>件エラーが出ています。
 <% end %>
 <div class="container">
+  <div class="ml-3 h4 m-4">新規投稿</div>
+  <div class="row justify-content-center">
+    <%= form_with model: @post do |f| %>
+        <div class="form-group">
+          <label>写真</label>
+          <%= f.file_field :image,class: "form-control"%>
+        </div>
 
-  <%= form_with model: @post do |f| %>
-    <div class="col-auto form_group mb-3 mx-auto">
-     <label>商品画像</label>
-     <%= f.file_field :image,accept: "images/*",class: "form-control-file-sm mx-auto"%>
-    </div>
-    <div class="col-auto form_group mb-2">
-      <label>商品名前</label>
-      <%=f.text_field :title,class: "form-text-sm mx-auto" %>
-    </div>
-    <div class="col-auto form_group mx-auto mb-2">
-      <label>商品説明</label>
-      <%=f.text_area :body,class: "form-text-sm mx-auto"%>
-    </div>
-    <div class="col-auto form_group mx-auto mb-2" id="star">
-      <label>レビュー</label>
-      <%= f.label :star, "星評価：" %>
-      <%= f.hidden_field :star, id: :review_star %>
-      <script>
-        $('#star').empty();
-        $('#star').raty({
-          size     : 36,
-          starOff:  '<%= asset_path('star-off.png') %>',
-          starOn : '<%= asset_path('star-on.png') %>',
-          starHalf: '<%= asset_path('star-half.png') %>',
-          scoreName: 'post[star]',
-          half: true,
-        });
-      </script>
-    </div>
-    <div class="col-auto form_group mb-2">
-      <label>ジャンル</label>
-      <div class="ml-4 ">
-        <%= f.collection_check_boxes( :genre_ids, Genre.all, :id, :soup) do |genre| %>
-          <div class="form_check">
-            <%= genre.label class: 'form-check-label' do %>
-              <%=genre.check_box class: 'form-check-input' %>
-              <%= genre.text %>
+        <div class="form-group">
+          <label>タイトル</label><br>
+          <%= f.text_field :title,class: "form-control"%>
+        </div>
+
+        <div class="form-group">
+         <label>本文</label><br>
+          <%= f.text_area :body,class: "form-control" %>
+        </div>
+
+        <label>レビュー</label>
+        <div class="col-auto form_group mx-auto mb-2" id="star">
+          <%= f.label :star, "星評価：" %>
+          <%= f.hidden_field :star, id: :review_star %>
+          <script>
+            $('#star').empty();
+            $('#star').raty({
+              size     : 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              scoreName: 'post[star]',
+              half: true,
+            });
+          </script>
+        </div>
+
+        <div class="form_group mb-2">
+          <label>ジャンル</label>
+          <div>
+            <%= f.collection_check_boxes( :genre_ids, Genre.all, :id, :soup) do |genre| %>
+              <div class="form-check form-check-inline justify-content-center">
+                <%= genre.label class: 'form-check-label' do %>
+                  <%=genre.check_box class: 'form-check-input' %>
+                  <%= genre.text %>
+                <% end %>
+              </div>
             <% end %>
           </div>
-        <% end %>
-      </div>
-    </div>
-    <div class="row form_group mb-5 justify-content-center">
-      <%=f.submit "投稿する",class: "btn btn-success w-25"%>
-    </div>
-  <% end %>
+        </div>
+
+        <div class="actions row justify-content-center">
+          <%= f.submit "投稿",class: "btn btn-info w-50" %>
+        </div>
+    <% end %>
+  </div>
 </div>

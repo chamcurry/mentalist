@@ -6,11 +6,20 @@ class MenbersController < ApplicationController
   end
   def edit
    @menber = current_menber
+   if @menber == current_menber
+    render :edit
+   else
+    redirect_to root_path
+   end
   end
   def update
    @menber = current_menber
-   @menber.update(menber_params)
+   if @menber == current_menber
+    @menber.update(menber_params)
    redirect_to menbers_my_page_path
+   else
+    render :edit
+   end
   end
   def withdraw
   end

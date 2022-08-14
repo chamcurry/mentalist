@@ -3,7 +3,7 @@
   <div class="row justify-content-center">
     <%= form_with model: @menber,url: menbers_path,mehod: :patch  do |f| %>
         <div class="form-group d-flex flex-column align-items-center">
-          <%= image_tag current_menber.get_profile_image,size: "200x200",class: "my-3 border rounded-circle" %>
+          <%= image_tag current_menber.get_profile_image,size: "150x150",class: "my-3 border rounded-circle" %>
           <%= f.file_field :profile_image,class: "form-control"%>
         </div>
         <div class="form-group">
@@ -18,14 +18,6 @@
           <label>メールアドレス</label><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control" %>
         </div>
-        <!--<div class="form-group">-->
-        <!--  <label>パスワード</label>-->
-        <!--  <%= f.password_field :password, autocomplete: "new-password",class: "form-control" %>-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-        <!--  <label>パスワード(確認)</label><br />-->
-        <!--  <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "form-control" %>-->
-        <!--</div>-->
         <div class="actions row justify-content-center">
           <%= f.submit "セーブする",class: "btn btn-info w-50" %>
         </div>

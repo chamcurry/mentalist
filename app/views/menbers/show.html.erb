@@ -2,7 +2,7 @@
   <div class="row mt-3">
     <div class="col-sm-5  d-flex flex-column align-items-center">
       <p>プロフィール</p>
-      <div class= "border border-dark"><%=image_tag current_menber.get_profile_image,size: "200x200" %></div>
+      <div><%=image_tag current_menber.get_profile_image,size: "200x200",class: " border rounded-circle" %></div>
       <div class="my-3 float-left">
         <h5>投稿数:
           <%=@posts.length %>

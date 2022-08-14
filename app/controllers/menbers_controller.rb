@@ -8,10 +8,12 @@ class MenbersController < ApplicationController
    @menber = current_menber
   end
   def update
+   @menber = current_menber
+   @menber.update(menber_params)
+   redirect_to menbers_my_page_path
   end
   def withdraw
   end
-
   private
   def menber_params
    params.require(:menber).permit(:last_name,:first_name,:is_active,:profile_image)

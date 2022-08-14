@@ -8,21 +8,21 @@
   </div>
 </div>
   <div class="container">
-    <p class="text-center">新着投稿</p>
-   <div class="card-deck">
-        <% @posts.last(4).each do |post| %>
-          <div class="card mb-2 p-0">
+    <p class="text-center">新着の投稿</p>
+   <div class="row card-deck">
+        <% @posts.last(5).each do |post| %>
+          <div class="card p-0">
               <%=link_to post_path(post) do %>
                 <% if post.image.attached? %>
-                 <%=image_tag post.image,size: "208x200"%>
+                 <%=image_tag post.image,size: "200x200"%>
                 <% end %>
               <% end %>
             <div class="card-body p-0">
                 <div><%=post.created_at.strftime('%Y/%m/%d')%></div>
-                <h5 class= "card-title"><%=post.title%></h5>
                 <% post.genres.each do |genre| %>
-                  <span class= 'badge badge-primary'><%= genre.soup %></span>
+                  <div class= 'badge badge-secondary'><%= genre.soup %></div>
                 <% end %>
+                <h6 class= "card-title m-0"><%=post.title%></h6>
                 <!--<span>評価：</span>-->
                 <span id="star-rate-<%= post.id %>"></span>
                 <script>
@@ -37,7 +37,7 @@
                   });
                 </script>
                 <span class="ml-2"><%= post.star %></span>
-              </div>
+            </div>
           </div>
         <% end %>
    </div>

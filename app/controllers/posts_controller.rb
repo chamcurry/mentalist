@@ -7,7 +7,7 @@ class PostsController < ApplicationController
     if params[:search].blank? && params[:genre_id].blank?
       @posts = Post.all
     elsif params[:search].present? && params[:genre_id].blank?
-      @posts = Post.where("title LIKE ?","%#{:search}%")
+      @posts = Post.where("title LIKE ?","%#{params[:search]}%")
     elsif params[:search].blank? && params[:genre_id].present?
       @posts = Genre.find(params[:genre_id]).posts
     else

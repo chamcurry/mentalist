@@ -25,8 +25,38 @@
             <div class= 'mt-2 badge badge-secondary'><%= genre.soup %></div>
           <% end %>
       </div>
-    <div class="col-7">
+    <div class="col-7 border">
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <%= link_to post_path(@post) do  %>
+              <% if @post.image.attached? %>
+                <%= image_tag @post.image,width: "100%;"%>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5><%=@post.created_at.strftime('%Y/%m/%d')%></h5>
+              <div class="mx-3"><%= @post.body%></div>
+              <div>
+                <% if @post.favorited_by?(current_menber) %>
+                   <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
+                  <%= link_to post_favorites_path(@post), method: :delete do %>
+                      <div class="ml-3" style="color:red;">♥ <%= @post.favorites.count%></div>
+                  <% end %>
+                 <% else %>
+                  <!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
+                  <%= link_to post_favorites_path(@post), method: :post do %>
+                      <div class="ml-3" style="color:gray;">♡ <%= @post.favorites.count %></div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
 
+      </div>
     </div>
     <div class="col-5">
 

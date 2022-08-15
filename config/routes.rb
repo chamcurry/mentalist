@@ -26,8 +26,8 @@ Rails.application.routes.draw do
   get "/menbers/my_page" => "menbers#show"
   patch "/menbers/withdraw" => "menbers#withdraw"
   resources :posts,only:[:index,:new,:create,:show,:destroy] do
-    resources :comments,only:[:create,:destroy]
     resource :favorites,only:[:create,:destroy]
+    resources :comments,only:[:create,:destroy]
   end
   get 'search' => 'posts#search'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

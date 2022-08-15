@@ -16,9 +16,14 @@
           <%=current_menber.email %>
         </div>
       </div>
-          <%=link_to edit_menbers_path,class: "btn btn-success mb-2" do %>
+        <div>
+          <%=link_to edit_menbers_path,class: " d-flex flex-column align-items-center btn btn-success mb-2" do %>
             編集する
           <% end %>
+          <%=link_to edit_menbers_path,class: "btn btn-danger mb-2" do %>
+            いいねリスト
+          <% end %>
+        </div>
     </div>
     <div class="sidebar col-lg-7 overflow-auto">
       <p class="text-center">投稿リスト</p>
@@ -31,20 +36,20 @@
                    <%=image_tag post.image,size: "220x200",class: "text-success"%>
                   <% end %>
                <% end %>
+               <% if post.favorited_by?(current_menber) %>
+                 <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
+                <%= link_to post_favorites_path(post), method: :delete do %>
+                    <div class="ml-3" style="color:red;">♥ <%= post.favorites.count%></div>
+                <% end %>
+               <% else %>
+                <!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
+                <%= link_to post_favorites_path(post), method: :post do %>
+                    <div class="ml-3" style="color:gray;">♡ <%= post.favorites.count %></div>
+                <% end %>
+               <% end %>
               </div>
             <div class="card-body">
              <div class="col-md-8">
-              <% if post.favorited?(current_menber) %>
-                 <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
-                <%= link_to post_favorite_path(post.id), method: :delete do %>
-                    <span style="color:red;">❤︎</span>
-                <% end %>
-              <% else %>
-                <!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
-                <%= link_to post_favorites_path(post.id), method: :post do %>
-                    <span>❤︎</span>
-                <% end %>
-              <% end %>
                 <div><%=post.created_at.strftime('%Y/%m/%d')%></div>
                 <h5><%=post.title%></h5>
                 <% post.genres.each do |genre| %>

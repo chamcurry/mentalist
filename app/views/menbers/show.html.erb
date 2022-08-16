@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row mt-3">
-    <div class="col-sm-5  d-flex flex-column align-items-center">
+    <div class="col-lg-5 mr-5 position-fixed  d-flex flex-column align-items-center">
       <p>プロフィール</p>
       <div><%=image_tag current_menber.get_profile_image,size: "200x200",class: " border rounded-circle" %></div>
       <div class="my-3 float-left">
@@ -25,15 +25,14 @@
           <% end %>
         </div>
     </div>
-    <div class="sidebar col-lg-7 overflow-auto">
+    <div class="offset-md-5 col-lg-7">
       <p class="text-center">投稿リスト</p>
         <% @posts.each do |post| %>
           <div class="card mb-2">
-            <div class="row">
-              <div class="col-sm-4">
+            <div class="col-sm-4">
                <%=link_to post_path(post) do %>
                   <% if post.image.attached? %>
-                   <%=image_tag post.image,size: "220x200",class: "text-success"%>
+                   <%=image_tag post.image,width: "100%",class: "text-success"%>
                   <% end %>
                <% end %>
                <% if post.favorited_by?(current_menber) %>
@@ -47,31 +46,28 @@
                     <div class="ml-3" style="color:gray;">♡ <%= post.favorites.count %></div>
                 <% end %>
                <% end %>
-              </div>
-            <div class="card-body">
-             <div class="col-md-8">
-                <div><%=post.created_at.strftime('%Y/%m/%d')%></div>
-                <h5><%=post.title%></h5>
-                <% post.genres.each do |genre| %>
-                   <span class= 'badge badge-primary'><%= genre.soup %></span>
-                <% end %>
-                <div><%= post.body.truncate(13) %></div>
-                <!--<span>評価：</span>-->
-                <div id="star-rate-<%= post.id %>"></div>
-                <script>
-                  $('#star-rate-<%= post.id %>').raty({
-                    size: 36,
-                    starOff: "<%= asset_path('star-off.png') %>",
-                    starOn: "<%= asset_path('star-on.png') %>",
-                    starHalf: "<%= asset_path('star-half.png') %>",
-                    half: true,
-                    readOnly: true,
-                    score: <%= post.star %>
-                  });
-                </script>
-                <!--<%= post.star %>レビュー整数-->
-             </div>
-           </div>
+            </div>
+            <div class="col-md-8 card-body ">
+              <div><%=post.created_at.strftime('%Y/%m/%d')%></div>
+              <h5><%=post.title%></h5>
+              <% post.genres.each do |genre| %>
+                 <span class= 'badge badge-primary'><%= genre.soup %></span>
+              <% end %>
+              <div><%= post.body.truncate(13) %></div>
+              <!--<span>評価：</span>-->
+              <div id="star-rate-<%= post.id %>"></div>
+              <script>
+                $('#star-rate-<%= post.id %>').raty({
+                  size: 36,
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starHalf: "<%= asset_path('star-half.png') %>",
+                  half: true,
+                  readOnly: true,
+                  score: <%= post.star %>
+                });
+              </script>
+              <!--<%= post.star %>レビュー整数-->
             </div>
           </div>
         <% end %>

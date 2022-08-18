@@ -3,28 +3,12 @@
   <%=@post.menber.full_name %>
 </div>
 
-<div class="container">
   <div class="row  d-flex justify-content-center mt-5">
-    <h1 class= ""><%= @post.title %></h1>
-      <div class="pl-5 pb-3" id="star-rate-<%= @post.id %>">
-        <script>
-          $('#star-rate-<%= @post.id %>').raty({
-            size: 50,
-            starOff: "<%= asset_path('star-off.png') %>",
-            starOn: "<%= asset_path('star-on.png') %>",
-            starHalf: "<%= asset_path('star-half.png') %>",
-            half: true,
-            readOnly: true,
-            score: <%= @post.star %>
-          });
-        </script>
-          <span class="h5">
-            <%= @post.star%><br>
-          </span>
-          <% @post.genres.each do |genre| %>
-            <div class= 'mt-2 badge badge-secondary'><%= genre.soup %></div>
-          <% end %>
-      </div>
+    <div class= "h1"><%= @post.title %></div>
+
+  </div>
+<div class="container">
+  <div class="row">
     <div class="col-7 position-fixed border">
       <div class="card mb-3" style="max-width: 540px;">
         <div class="row no-gutters">
@@ -39,6 +23,25 @@
             <div class="card-body">
               <h5><%=@post.created_at.strftime('%Y/%m/%d')%></h5>
               <div class="mx-3"><%= @post.body%></div>
+              <div class="pl-5 pb-3" id="star-rate-<%= @post.id %>">
+                <script>
+                  $('#star-rate-<%= @post.id %>').raty({
+                    size: 50,
+                    starOff: "<%= asset_path('star-off.png') %>",
+                    starOn: "<%= asset_path('star-on.png') %>",
+                    starHalf: "<%= asset_path('star-half.png') %>",
+                    half: true,
+                    readOnly: true,
+                    score: <%= @post.star %>
+                  });
+                </script>
+                  <span class="h5">
+                    <%= @post.star%><br>
+                  </span>
+                  <% @post.genres.each do |genre| %>
+                    <div class= 'mt-2 badge badge-secondary'><%= genre.soup %></div>
+                  <% end %>
+                </div>
               <div>
                 <% if @post.favorited_by?(current_menber) %>
                    <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
@@ -58,7 +61,6 @@
       </div>
     </div>
     <div class="sidebar col-5 offset-md-5">
-
     </div>
   </div>
 </div>

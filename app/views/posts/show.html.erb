@@ -76,7 +76,7 @@
           <%= image_tag current_menber.get_profile_image,size: "50x50",class: "border rounded-circle"%>
           <%= form_with model: [@post,@post_comment] do |f| %>
             <%= f.text_area :post_comment,placeholder: "コメントを書く",class: "ml-3" %>
-            <%= f.submit "投稿する",class: "btn btn-outline-info btn-sm" %>
+            <%= f.submit "投稿する",class: "btn btn-outline-info btn-sm"%>
           <% end %>
         </div>
     </div>

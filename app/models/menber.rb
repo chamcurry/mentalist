@@ -15,7 +15,7 @@ class Menber < ApplicationRecord
   def get_profile_image
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/user.jpg')
-      profile_image.attach(io: File.open(file_path), filename: 'user.jpg')
+      profile_image.attach(io: File.open(file_path), filename: 'user.jpg',content_type: 'image/jpg')
     end
    profile_image
   end

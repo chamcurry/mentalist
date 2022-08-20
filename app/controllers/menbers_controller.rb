@@ -1,6 +1,9 @@
 class MenbersController < ApplicationController
   before_action :guest_check
-  def show
+  def index
+
+  end
+  def my_page
    @menber = current_menber
    @posts = @menber.posts.all
   end

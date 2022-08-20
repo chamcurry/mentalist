@@ -20,11 +20,14 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
   devise_scope :admin do
-     post '/menbers/guest_sign_in' => 'admin/sessions#guest_log_in'
-   end
-  resource :menbers,only:[:edit,:update]
-  get "/menbers/my_page" => "menbers#show"
-  patch "/menbers/withdraw" => "menbers#withdraw"
+    post '/menbers/guest_sign_in' => 'admin/sessions#guest_log_in'
+  end
+  resource :menbers,only:[:edit,:update] do
+    get :like_list
+    get :my_page
+    patch :withdraw
+  end
+  # patch "/menbers/withdraw" => "menbers#withdraw"
   resources :posts,only:[:index,:new,:create,:show,:destroy] do
     resource :favorites,only:[:create,:destroy]
     resources :comments,only:[:create,:destroy]

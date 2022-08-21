@@ -67,6 +67,9 @@
             <div class= "text-center">
               <%= post_comments.post_comment %>
             </div>
+            <% if post_comments.menber == current_menber %>
+                <%=link_to "削除",post_comment_path(post_comments.post,post_comments),method: :delete,data:{confirm: "このコメントを削除しますか？"},class: "btn btn-outline-danger"%>
+            <% end %>
           </div>
         <% end %>
     </div>

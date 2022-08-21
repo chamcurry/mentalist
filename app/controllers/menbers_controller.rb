@@ -1,7 +1,9 @@
 class MenbersController < ApplicationController
   before_action :guest_check
-  def index
 
+  def like_list
+   favorites = Favorite.where(menber_id: current_menber.id).pluck(:post_id)
+   @favorite_posts = Post.find(favorites)
   end
   def my_page
    @menber = current_menber
@@ -26,6 +28,7 @@ class MenbersController < ApplicationController
   end
   def withdraw
   end
+
   private
   def menber_params
    params.require(:menber).permit(:last_name,:first_name,:is_active,:profile_image)

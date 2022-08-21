@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <% posts.each do |post| %>
+    <div class="col-md-4">
+     <div class="card-deck">
+      <div class="card mb-3" style="width: 20rem;">
+        <div>
+          <%= link_to post_path(post) do %>
+            <% if post.image.attached? %>
+              <%= image_tag post.image,width: "100%" %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="card-body ">
+          <h4 class="card-title"><%=post.title%></h4>
+          <div class="card-text">
+            <div>
+              <%=post.created_at.strftime('%Y/%m/%d')%>
+              <% post.genres.each do |genre| %>
+                <span class= 'badge badge-secondary'><%= genre.soup %></span>
+              <% end %>
+            </div>
+            <span id="star-rate-<%= post.id %>">
+              <script>
+                $('#star-rate-<%= post.id %>').raty({
+                  size: 36,
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starHalf: "<%= asset_path('star-half.png') %>",
+                  half: true,
+                  readOnly: true,
+                  score: <%= post.star %>
+                });
+              </script>
+              <%= post.star %>
+              <i class="fas fa-comment ml-4"></i>
+              <%= post.comments.count %>
+              <% if post.favorited_by?(current_menber) %>
+                 <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
+                  <%= link_to post_favorites_path(post), method: :delete do %>
+                    <i class="fas fa-heart" style="color:red;"> <%= post.favorites.count %></i>
+                  <% end %>
+              <% else %>
+                <!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
+                  <%= link_to post_favorites_path(post), method: :post do %>
+                    <i class="fas fa-heart " style="color:gray;"> <%= post.favorites.count %></i>
+                  <% end %>
+              <% end %>
+            </span>
+          </div>
+        </div>
+      </div>
+     </div>
+    </div>
+    <% end %>
+  </div>
+</div>

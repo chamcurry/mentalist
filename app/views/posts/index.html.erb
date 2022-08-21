@@ -6,48 +6,5 @@
 　<%= submit_tag "検索" %>
 <% end %>
 
-<p class="text-center">新着の投稿</p>
-<div class="container">
-  <div class="row">
-    <% @posts.each do |post| %>
-    <div class="col-lg-4">
-     <div class="card-deck">
-      <div class="card mb-3" style="width: 20rem;">
-        <div class="card-img-top">
-          <%= link_to post_path(post) do %>
-            <% if post.image.attached? %>
-              <%= image_tag post.image,width: "100%" %>
-            <% end %>
-          <% end %>
-        </div>
-        <div class="card-body">
-          <h4 class="card-title"><%=post.title%></h4>
-          <div class="card-text">
-             <div>
-               <%=post.created_at.strftime('%Y/%m/%d')%>
-               <% post.genres.each do |genre| %>
-                  <span class= 'badge badge-secondary'><%= genre.soup %></span>
-                <% end %>
-             </div>
-            <span id="star-rate-<%= post.id %>"></span>
-              <script>
-                $('#star-rate-<%= post.id %>').raty({
-                  size: 36,
-                  starOff: "<%= asset_path('star-off.png') %>",
-                  starOn: "<%= asset_path('star-on.png') %>",
-                  starHalf: "<%= asset_path('star-half.png') %>",
-                  half: true,
-                  readOnly: true,
-                  score: <%= post.star %>
-                });
-              </script>
-            <span class="ml-2"><%= post.star %></span>
-          </div>
-        </div>
-      </div>
-     </div>
-    </div>
-    <% end %>
-  </div>
-</div>
-  <%#= paginate @posts,theme: 'twitter-bootstrap-4' %>
+<p class="text-center my-3">投稿一覧</p>
+<%= render 'post_list',posts: @posts %>

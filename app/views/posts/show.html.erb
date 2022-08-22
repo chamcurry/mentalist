@@ -1,87 +1,81 @@
-<div class="float-left m-4">
-  <%=image_tag @post.menber.get_profile_image,size: "75x75",class: " border rounded-circle" %>
-  <%=@post.menber.full_name %>
-</div>
-
-<div class="container">
-  <div class="row text-left mt-5">
-    <div class= "h3"><%= @post.title %></div>
-  </div>
-  <div class="row">
-    <div class="col-md-7 mx-0 border">
-      <div class="card my-2" style="max-width: 540px;">
-        <div class="card-image-top">
-          <%= link_to post_path(@post) do  %>
-            <% if @post.image.attached? %>
-              <%= image_tag @post.image,width: "100%",height: "500px"%>
-            <% end %>
-          <% end %>
-        </div>
-        <div class="card-body">
-          <h5><%=@post.created_at.strftime('%Y/%m/%d')%></h5>
-          <div class="mx-3"><%= @post.body%></div>
-          <div class="pl-5 pb-3" id="star-rate-<%= @post.id %>">
-            <script>
-              $('#star-rate-<%= @post.id %>').raty({
-                size: 50,
-                starOff: "<%= asset_path('star-off.png') %>",
-                starOn: "<%= asset_path('star-on.png') %>",
-                starHalf: "<%= asset_path('star-half.png') %>",
-                half: true,
-                readOnly: true,
-                score: <%= @post.star %>
-              });
-            </script>
-              <span class="h5">
-                <%= @post.star%><br>
-              </span>
-              <% @post.genres.each do |genre| %>
-                <div class= 'mt-2 badge badge-secondary'><%= genre.soup %></div>
-              <% end %>
+<div class="container-fluid">
+  <div class="row mt-3">
+    <div class="col-lg-8">
+      <p class="text-center">投稿リスト</p>
+        <div class="card mb-2">
+          <div class="row no-gutters">
+            <div class="col-md-5">
+              <%=image_tag @post.image,width: "100%"%>
+            </div>
+            <div class="col-lg-3">
+              <div class="card-body">
+                <div><%=@post.created_at.strftime('%Y/%m/%d')%></div>
+                <h5><%=@post.title%></h5>
+                <% @post.genres.each do |genre| %>
+                  <span class= 'badge badge-primary'><%= genre.soup %></span>
+                <% end %>
+                <div><%= @post.body.truncate(13) %></div>
+                <div id="star-rate-<%= @post.id %>"></div>
+                <script>
+                  $('#star-rate-<%= @post.id %>').raty({
+                  size: 36,
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starHalf: "<%= asset_path('star-half.png') %>",
+                  half: true,
+                  readOnly: true,
+                  score: <%= @post.star %>
+                  });
+                </script>
+                <%#= post.star %>
+                <i class="far fa-comment-alt  text-muted mx-3"><%= @post.comments.count%></i>
+                <% if @post.favorited_by?(current_menber) %>
+                 <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
+                  <%= link_to post_favorites_path(@post), method: :delete do %>
+                    <i class="fas fa-heart text-danger"><%= @post.favorites.count%></i>
+                  <% end %>
+                <% else %>
+                <!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
+                  <%= link_to post_favorites_path(@post), method: :post do %>
+                    <i class="fas fa-heart text-muted"><%= @post.favorites.count %></i>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div>
-        <% if @post.favorited_by?(current_menber) %>
-           <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
-          <%= link_to post_favorites_path(@post), method: :delete do %>
-              <div class="ml-3" style="color:red;">♥ <%= @post.favorites.count%></div>
-          <% end %>
-         <% else %>
-          <!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
-          <%= link_to post_favorites_path(@post), method: :post do %>
-              <div class="ml-3" style="color:gray;">♡ <%= @post.favorites.count %></div>
-          <% end %>
-        <% end %>
-      </div>
     </div>
-    <div class="sidebar col-md-5">
-        <p class="mt-3">コメント数:<%= @post.comments.count %></p>
-        <% @post.comments.each do |post_comments| %>
-          <div class="border my-2">
-              <%= image_tag post_comments.menber.get_profile_image,size: "50x50",class: "border rounded-circle"%>
+
+    <div class="sidebar col-lg-4">
+      <p class="mt-3">コメント数:<%= @post.comments.count %></p>
+      <% @post.comments.each do |post_comments| %>
+        <div class="card my-2 bg-light">
+          <div class="row">
+            <div class="card-title ml-3 mt-2">
+              <%= image_tag post_comments.menber.get_profile_image,size: "45x45",class: "border rounded-circle"%>
               <%= post_comments.menber.full_name %>
-            <div class="float-right">
               <%= post_comments.created_at.strftime('%Y/%m/%d') %>
             </div>
-            <div class= "text-center">
-              <%= post_comments.post_comment %>
-            </div>
+          </div>
+          <div class="card-body p-2">
+            <%= post_comments.post_comment %>
             <% if post_comments.menber == current_menber %>
-                <%=link_to "削除",post_comment_path(post_comments.post,post_comments),method: :delete,data:{confirm: "このコメントを削除しますか？"},class: "btn btn-outline-danger"%>
-            <% end %>
+              <%=link_to "削除",post_comment_path(post_comments.post,post_comments),method: :delete,data:{confirm: "このコメントを削除しますか？"},class: "float-right btn btn-outline-danger btn-sm"%>
+           <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col mr-4 d-flex justify-content-start">
+      <div class="row my-2">
+        <%= image_tag current_menber.get_profile_image,size: "50x50",class: "border rounded-circle"%>
+        <%= form_with model: [@post,@post_comment] do |f| %>
+          <div class="col-6 form-group">
+            <%= f.text_area :post_comment,placeholder: "コメントを書く" %>
+            <%= f.submit "投稿する",class: "btn btn-outline-info btn-sm w-75"%>
           </div>
         <% end %>
-    </div>
-
-    <div class="row my-4 d-flex ">
-        <div class="col d-flex justify-content-center">
-          <%= image_tag current_menber.get_profile_image,size: "50x50",class: "border rounded-circle"%>
-          <%= form_with model: [@post,@post_comment] do |f| %>
-            <%= f.text_area :post_comment,placeholder: "コメントを書く",class: "ml-3" %>
-            <%= f.submit "投稿する",class: "btn btn-outline-info btn-sm"%>
-          <% end %>
-        </div>
+      </div>
     </div>
   </div>
 </div>

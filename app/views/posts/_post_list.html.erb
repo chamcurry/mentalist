@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
     <% posts.each do |post| %>
-    <div class="col-md-4">
+    <div class="col-lg-4">
      <div class="card-deck">
-      <div class="card mb-3" style="width: 20rem;">
+      <div class="card lg-4" style="width: 20rem;">
         <div>
           <%= link_to post_path(post) do %>
             <% if post.image.attached? %>
@@ -11,8 +11,8 @@
             <% end %>
           <% end %>
         </div>
-        <div class="card-body ">
-          <h4 class="card-title"><%=post.title%></h4>
+        <div class="card-body">
+          <h5 class="card-title"><%=post.title%></h5>
           <div class="card-text">
             <div>
               <%=post.created_at.strftime('%Y/%m/%d')%>
@@ -33,19 +33,20 @@
                 });
               </script>
               <%= post.star %>
-              <i class="fas fa-comment ml-4"></i>
-              <%= post.comments.count %>
+            <div class="row d-flex justify-content-end">
+              <i class="far fa-comment-alt d-flex align-items-center text-muted mx-2"><%= post.comments.count%></i>
               <% if post.favorited_by?(current_menber) %>
                  <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
                   <%= link_to post_favorites_path(post), method: :delete do %>
-                    <i class="fas fa-heart" style="color:red;"> <%= post.favorites.count %></i>
+                    <i class="fas fa-heart text-danger"><%= post.favorites.count%></i>
                   <% end %>
               <% else %>
                 <!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
                   <%= link_to post_favorites_path(post), method: :post do %>
-                    <i class="fas fa-heart " style="color:gray;"> <%= post.favorites.count %></i>
+                    <i class="fas fa-heart text-muted"><%= post.favorites.count %></i>
                   <% end %>
               <% end %>
+            </div>
             </span>
           </div>
         </div>

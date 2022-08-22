@@ -35,17 +35,6 @@
                  <%=image_tag post.image,width: "100%",class: "text-success"%>
                 <% end %>
              <% end %>
-             <% if post.favorited_by?(current_menber) %>
-               <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
-              <%= link_to post_favorites_path(post), method: :delete do %>
-                  <div class="ml-3" style="color:red;">♥ <%= post.favorites.count%></div>
-              <% end %>
-             <% else %>
-              <!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
-              <%= link_to post_favorites_path(post), method: :post do %>
-                  <div class="ml-3" style="color:gray;">♡ <%= post.favorites.count %></div>
-              <% end %>
-             <% end %>
           </div>
           <div class="col-md-8 card-body">
             <div><%=post.created_at.strftime('%Y/%m/%d')%></div>
@@ -54,7 +43,6 @@
                <span class= 'badge badge-primary'><%= genre.soup %></span>
             <% end %>
             <div><%= post.body.truncate(13) %></div>
-            <!--<span>評価：</span>-->
             <div id="star-rate-<%= post.id %>"></div>
             <script>
               $('#star-rate-<%= post.id %>').raty({
@@ -67,7 +55,21 @@
                 score: <%= post.star %>
               });
             </script>
-            <!--<%= post.star %>レビュー整数-->
+            <%#= post.star %>
+            <div class="row">
+              <i class="far fa-comment-alt d-flex align-items-center text-muted mx-3"><%= post.comments.count%></i>
+                <% if post.favorited_by?(current_menber) %>
+                 <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
+                  <%= link_to post_favorites_path(post), method: :delete do %>
+                    <i class="fas fa-heart text-danger"><%= post.favorites.count%></i>
+                  <% end %>
+                <% else %>
+                <!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
+                  <%= link_to post_favorites_path(post), method: :post do %>
+                    <i class="fas fa-heart text-muted"><%= post.favorites.count %></i>
+                  <% end %>
+                <% end %>
+            </div>
           </div>
         </div>
       <% end %>

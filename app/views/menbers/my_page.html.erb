@@ -27,7 +27,7 @@
     </div>
     <div class="col-lg-6">
       <p class="text-center">投稿リスト</p>
-      <% @posts.each do |post| %>
+      <% @posts.reverse_each do |post| %>
         <div class="card-deck mb-2">
           <div class="col-sm-4">
              <%=link_to post_path(post) do %>

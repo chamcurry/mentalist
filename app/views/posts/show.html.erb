@@ -7,12 +7,12 @@
             <div class="col-md-5">
               <%=image_tag @post.image,width: "100%"%>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-5">
               <div class="card-body">
                 <div><%=@post.created_at.strftime('%Y/%m/%d')%></div>
-                <h5><%=@post.title%></h5>
+                <div class="h4 mb-0"><%=@post.title%></div>
                 <% @post.genres.each do |genre| %>
-                  <span class= 'badge badge-primary'><%= genre.soup %></span>
+                  <span class= 'badge badge-secondary my-2'><%= genre.soup %></span>
                 <% end %>
                 <div><%= @post.body.truncate(13) %></div>
                 <div id="star-rate-<%= @post.id %>"></div>
@@ -28,6 +28,7 @@
                   });
                 </script>
                 <%#= post.star %>
+               <div class="row d-flex align-items-center mt-2">
                 <i class="far fa-comment-alt  text-muted mx-3"><%= @post.comments.count%></i>
                 <% if @post.favorited_by?(current_menber) %>
                  <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
@@ -40,6 +41,7 @@
                     <i class="fas fa-heart text-muted"><%= @post.favorites.count %></i>
                   <% end %>
                 <% end %>
+               </div>
               </div>
             </div>
           </div>

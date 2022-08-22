@@ -11,25 +11,23 @@
 <div class="container">
   <div class="row">
     <% @posts.last(6).reverse_each do |post| %>
-    <div class="col-lg-4">
+    <div class="col-lg-4 col-md-6 col-6">
      <div class="card-deck">
-      <div class="card mb-3" style="width: 20rem;">
-        <div class="card-img-top">
+      <div class="card p-1 mb-3" style="width: 10rem;">
+        <img class="card-img ">
           <%= link_to post_path(post) do %>
             <% if post.image.attached? %>
               <%= image_tag post.image,width: "100%" %>
             <% end %>
           <% end %>
-        </div>
-        <div class="card-body">
-          <h4 class="card-title"><%=post.title%></h4>
+        </img>
+        <div class="card-body bg-dark text-light my-1 py-0" style="height: 12rem;">
+          <div class="row d-flex justify-content-start"><%=post.created_at.strftime('%Y/%m/%d')%></div>
+          <div class="h5 card-title"><%=post.title%></div>
           <div class="card-text">
-             <div><%=post.created_at.strftime('%Y/%m/%d')%>
-               <% post.genres.each do |genre| %>
-                  <span class= 'badge badge-secondary'><%= genre.soup %></span>
-                <% end %>
-             </div>
-            <span id="star-rate-<%= post.id %>"></span>
+            <%= post.body.truncate(12) %>
+          </div>
+            <span class="row d-flex justify-content-end align-self-end" id="star-rate-<%= post.id %>"></span>
               <script>
                 $('#star-rate-<%= post.id %>').raty({
                   size: 36,
@@ -41,8 +39,9 @@
                   score: <%= post.star %>
                 });
               </script>
-            <span class="ml-2"><%= post.star %></span>
-          </div>
+            <% post.genres.each do |genre| %>
+                <div class='mx-1 badge badge-secondary'><%= genre.soup %></div>
+            <% end %>
         </div>
       </div>
      </div>

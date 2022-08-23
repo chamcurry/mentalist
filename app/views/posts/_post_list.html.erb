@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <% posts.each do |post| %>
+  <% posts.each do |post| %>
     <div class="col-lg-4 col-md-6 col-sm-6">
      <div class="card-deck">
       <div class="card p-1">
@@ -11,6 +11,7 @@
             <% end %>
           <% end %>
         </div>
+
         <div class="card-body bg-dark text-light mt-1" style="height: 12rem;">
           <h5 class="card-title"><%=post.title%></h5>
           <div class="card-text">
@@ -36,15 +37,13 @@
             <div class="row d-flex justify-content-end">
               <i class="far fa-comment-alt d-flex align-items-center text-info mx-2"><%= post.comments.count%></i>
               <% if post.favorited_by?(current_menber) %>
-                 <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
-                  <%= link_to post_favorites_path(post), method: :delete do %>
-                    <i class="fas fa-heart text-danger"><%= post.favorites.count%></i>
-                  <% end %>
+                <%= link_to post_favorites_path(post), method: :delete do %>
+                  <i class="fas fa-heart text-danger"><%= post.favorites.count%></i>
+                <% end %>
               <% else %>
-                <!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
-                  <%= link_to post_favorites_path(post), method: :post do %>
-                    <i class="fas fa-heart text-muted"><%= post.favorites.count %></i>
-                  <% end %>
+                <%= link_to post_favorites_path(post), method: :post do %>
+                  <i class="fas fa-heart text-muted"><%= post.favorites.count %></i>
+                <% end %>
               <% end %>
             </div>
             </span>
@@ -53,6 +52,6 @@
       </div>
      </div>
     </div>
-    <% end %>
+  <% end %>
   </div>
 </div>

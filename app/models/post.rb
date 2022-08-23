@@ -9,6 +9,6 @@ class Post < ApplicationRecord
 
   def favorited_by?(menber)
   # favoritesテーブルに存在するか判断
-   favorites.exists?(menber_id: menber.id)
+    favorites.exists?(menber_id: menber.id)
   end
 end

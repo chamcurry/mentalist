@@ -30,16 +30,19 @@
                 <%#= post.star %>
                <div class="row d-flex align-items-center mt-2">
                 <i class="far fa-comment-alt  text-info mx-3"><%= @post.comments.count%></i>
-                <% if @post.favorited_by?(current_menber) %>
-                 <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
-                  <%= link_to post_favorites_path(@post), method: :delete do %>
-                    <i class="fas fa-heart text-danger"><%= @post.favorites.count%></i>
+                <% if menber_signed_in? && @menber.id != 1 %>
+                <!--投稿に紐ついているいいねがログインしているメンバーのものなら-->
+                  <% if @post.favorited_by?(current_menber) %>
+                    <%= link_to post_favorites_path(@post), method: :delete do %>
+                      <i class="fas fa-heart text-danger"><%= @post.favorites.count%></i>
+                    <% end %>
+                  <% else %>
+                    <%= link_to post_favorites_path(@post), method: :post do %>
+                      <i class="fas fa-heart text-muted"><%= @post.favorites.count %></i>
+                    <% end %>
                   <% end %>
                 <% else %>
-                <!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
-                  <%= link_to post_favorites_path(@post), method: :post do %>
-                    <i class="fas fa-heart text-muted"><%= @post.favorites.count %></i>
-                  <% end %>
+                  <i class="fas fa-heart text-danger"><%= @post.favorites.count %></i>
                 <% end %>
                </div>
               </div>
@@ -70,11 +73,13 @@
     </div>
     <div class="col order-md-2 order-sm-2 mr-4 d-flex justify-content-start">
       <div class="row my-2">
-        <%= image_tag current_menber.get_profile_image,size: "50x50",class: "border rounded-circle"%>
-        <%= form_with model: [@post,@post_comment] do |f| %>
-          <div class="col-6 form-group">
-            <%= f.text_area :post_comment,placeholder: "コメントを書く" %>
-            <%= f.submit "投稿する",class: "btn btn-outline-info btn-sm w-75"%>
+        <% if menber_signed_in? %>
+            <%= image_tag current_menber.get_profile_image,size: "50x50",class: "border rounded-circle"%>
+            <%= form_with model: [@post,@post_comment] do |f| %>
+            <div class="col-6 form-group">
+              <%= f.text_area :post_comment,placeholder: "コメントを書く" %>
+              <%= f.submit "投稿する",class: "btn btn-outline-info btn-sm w-75"%>
+            <% end %>
           </div>
         <% end %>
       </div>

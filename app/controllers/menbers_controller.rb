@@ -4,6 +4,7 @@ class MenbersController < ApplicationController
   def like_list
    favorites = Favorite.where(menber_id: current_menber.id).pluck(:post_id)
    @favorite_posts = Post.find(favorites)
+   @menber = current_menber
   end
   def my_page
    @menber = current_menber

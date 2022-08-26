@@ -2,26 +2,24 @@ Rails.application.routes.draw do
   get "/admin" => "admin/homes#top"
   namespace :admin do
     resources :menbers,only:[:index,:update]
-  end
-
-  namespace :admin do
     resources :genres,only:[:index,:create,:destroy]
-  end
-
-  namespace :admin do
-    resources :posts,only:[:index,:show,:destroy]
+    resources :posts,only:[:index,:show]
+    delete '/posts/:id' => 'posts#destroy',as: "post_delete"
   end
 
   root to: "homes#top"
   devise_for :menber,controllers: {
     sessions: "menber/sessions"
   }
+
   devise_for :admin,skip:[:registrations,:passwords],controllers: {
     sessions: "admin/sessions"
   }
+
   devise_scope :admin do
     post '/menbers/guest_sign_in' => 'admin/sessions#guest_log_in'
   end
+
   resource :menbers,only:[:edit,:update] do
     get :like_list
     get :my_page

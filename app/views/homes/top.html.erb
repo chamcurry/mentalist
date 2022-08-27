@@ -47,7 +47,15 @@
               <%= post.star %>
             <div class="row d-flex justify-content-end">
               <i class="far fa-comment-alt d-flex align-items-center text-info mx-2"><%= post.comments.count%></i>
-              <i class="fas fa-heart text-danger"><%= post.favorites.count %></i>
+                <% if menber_signed_in? %>
+                  <% if post.favorited_by?(current_menber) %>
+                      <i class="fas fa-heart text-danger"><%= post.favorites.count%></i>
+                  <% else %>
+                      <i class="fas fa-heart text-muted"><%= post.favorites.count %></i>
+                  <% end %>
+                <% else %>
+                  <i class="fas fa-heart text-muted"><%= post.favorites.count %></i>
+                <% end %>
             </div>
             </span>
           </div>

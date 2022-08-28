@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "homes#top"
   namespace :admin do
     resources :menbers,only:[:index,:update]
-    patch 'menbers/:id' => 'menbers#withdraw',as: "menber_withdraw"
+    patch 'menbers/:id/withdraw' => 'menbers#withdraw',as: "menber_withdraw"
     resources :genres,only:[:index,:create,:destroy]
     resources :posts,only:[:index,:show]
     delete '/posts/:id' => 'posts#destroy',as: "post_delete"
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     get :my_page
     patch :withdraw
   end
-  # patch "/menbers/withdraw" => "menbers#withdraw"
+  
   resources :posts,only:[:index,:new,:create,:show,:destroy] do
     resource :favorites,only:[:create,:destroy]
     resources :comments,only:[:create,:destroy]

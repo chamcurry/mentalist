@@ -14,7 +14,7 @@
                 <% @post.genres.each do |genre| %>
                   <span class= 'badge badge-secondary my-2'><%= genre.soup %></span>
                 <% end %>
-                <div><%= @post.body.truncate(13) %></div>
+                <div><%= @post.body %></div>
                 <div id="star-rate-<%= @post.id %>"></div>
                 <script>
                   $('#star-rate-<%= @post.id %>').raty({

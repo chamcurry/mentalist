@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-  <% posts.each do |post| %>
+  <% posts.reverse.each do |post| %>
     <div class="col-lg-4 col-md-6 col-sm-6">
      <div class="card-deck">
       <div class="card p-1">
@@ -34,7 +34,7 @@
                 });
               </script>
               <%= post.star %>
-            <div class="row d-flex justify-content-end">
+            <div class="row d-flex justify-content-end mt-3">
               <i class="far fa-comment-alt d-flex align-items-center text-info mx-2"><%= post.comments.count%></i>
               <!--メンバーがサインインかつ、idが１では無いとき-->
               <% if menber_signed_in? && menber.id != 1 %>

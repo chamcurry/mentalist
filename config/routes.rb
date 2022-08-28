@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
-  get "/admin" => "admin/homes#top"
+
+  root to: "homes#top"
   namespace :admin do
     resources :menbers,only:[:index,:update]
+    patch 'menbers/:id' => 'menbers#withdraw',as: "menber_withdraw"
     resources :genres,only:[:index,:create,:destroy]
     resources :posts,only:[:index,:show]
     delete '/posts/:id' => 'posts#destroy',as: "post_delete"
   end
 
-  root to: "homes#top"
   devise_for :menber,controllers: {
     sessions: "menber/sessions"
   }

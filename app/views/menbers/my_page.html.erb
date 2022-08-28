@@ -20,8 +20,8 @@
         <%=link_to edit_menbers_path,class: "d-flex flex-column align-items-center btn btn-success mb-2" do %>
           編集する
         <% end %>
-        <%=link_to like_list_menbers_path,class: "btn btn-danger mb-2" do %>
-          いいねリスト
+        <%=link_to withdraw_menbers_path,method: :patch,data:{confirm: "本当に退会しますか？"},class: "btn btn-danger mb-2" do %>
+          退会する
         <% end %>
       </div>
     </div>

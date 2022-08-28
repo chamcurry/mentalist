@@ -19,6 +19,6 @@ class Admin::GenresController < ApplicationController
   private
 
   def genre_params
-    params.require(:genre).permit(:soup,:noodle)
+    params.require(:genre).permit(:soup)
   end
 end

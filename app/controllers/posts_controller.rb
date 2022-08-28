@@ -23,7 +23,7 @@ class PostsController < ApplicationController
   def create
     @post = current_menber.posts.new(post_params)
    if @post.save
-      redirect_to root_path
+      redirect_to my_page_menbers_path
    else
       render :new
    end

@@ -68,6 +68,11 @@
           <% end %>
         </li>
         <li class="nav-item">
+          <%= link_to like_list_menbers_path,class: "nav-link" do %>
+           いいねリスト
+          <% end %>
+        </li>
+        <li class="nav-item">
           <%= link_to destroy_menber_session_path,method: :delete,class: "nav-link" do %>
            ログアウト
           <% end %>

@@ -22,16 +22,20 @@ class MenbersController < ApplicationController
    @menber = current_menber
    if @menber == current_menber
     @menber.update(menber_params)
-   redirect_to menbers_my_page_path
+   redirect_to my_page_menbers_path
    else
     render :edit
    end
   end
   def withdraw
+   @menber = current_menber
+   @menber.update(is_active: true)
+   reset_session
+   redirect_to root_path
   end
 
   private
   def menber_params
-   params.require(:menber).permit(:last_name,:first_name,:is_active,:profile_image)
+   params.require(:menber).permit(:last_name,:first_name,:is_active,:email,:profile_image)
   end
 end

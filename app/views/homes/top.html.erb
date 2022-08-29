@@ -2,7 +2,8 @@
   <div class="container">
     <div class="row">
       <p class="col h3 text-light d-flex justify-content-center">
-       ようこそ麺Listへ<br>
+       麺多listへようこそ<br>
+       イチオシを見つけましょう！
       </p>
     </div>
   </div>
@@ -47,11 +48,15 @@
               <%= post.star %>
             <div class="row d-flex justify-content-end mt-3">
               <i class="far fa-comment-alt d-flex align-items-center text-info mx-2"><%= post.comments.count%></i>
-                <% if menber_signed_in? %>
+                <% if menber_signed_in? && @menber.id != 1 %>
                   <% if post.favorited_by?(current_menber) %>
+                    <%= link_to post_favorites_path(post), method: :delete do %>
                       <i class="fas fa-heart text-danger"><%= post.favorites.count%></i>
+                    <% end %>
                   <% else %>
+                    <%= link_to post_favorites_path(post), method: :post do %>
                       <i class="fas fa-heart text-muted"><%= post.favorites.count %></i>
+                    <% end %>
                   <% end %>
                 <% else %>
                   <i class="fas fa-heart text-muted"><%= post.favorites.count %></i>

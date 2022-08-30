@@ -1,3 +1,4 @@
+<p class="text-center my-3">投稿一覧</p>
 <%= form_with url: posts_path,method: :get do %>
   <!--ジャンル検索-->
 　<%= select_tag :genre_id,options_from_collection_for_select(Genre.all,:id,:soup,params[:genre_id]),{prompt: 'タグを選択'}%>
@@ -6,5 +7,4 @@
 　<%= submit_tag "検索" %>
 <% end %>
 
-<p class="text-center my-3">投稿一覧</p>
 <%= render 'post_list',posts: @posts,menber: @menber %>

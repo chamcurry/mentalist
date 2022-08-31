@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    # 追加したいメソッドの種類, keys: [追加したいパラメーター名])
+    # (追加したいメソッドの種類, keys: [追加したいパラメーター名])
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name,:last_name])
   end
     # もしログインしているIDがゲストユーザーなら遷移させる

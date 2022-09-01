@@ -73,8 +73,8 @@
     </div>
     <div class="col order-md-2 order-sm-2 mr-4 d-flex justify-content-start">
       <div class="row my-2">
-        <% if menber_signed_in? %>
-            <%= image_tag current_menber.get_profile_image,size: "50x50",class: "border rounded-circle"%>
+        <% if menber_signed_in? && @menber.id != 1 %>
+            <%= image_tag current_menber.get_profile_image,size: "50x50",class: "border rounded-circle mx-2"%>
             <%= form_with model: [@post,@post_comment] do |f| %>
             <div class="col-6 form-group">
               <%= f.text_area :post_comment,placeholder: "コメントを書く" %>

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-  <% posts.reverse.each do |post| %>
+  <% posts.last(6).reverse.each do |post| %>
     <div class="col-lg-4 col-md-6 col-sm-6">
      <div class="card-deck">
       <div class="card p-1">
@@ -61,3 +61,4 @@
   <% end %>
   </div>
 </div>
+<%= paginate posts,theme: 'twitter-bootstrap-4' %>

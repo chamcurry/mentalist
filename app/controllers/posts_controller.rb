@@ -1,11 +1,10 @@
 class PostsController < ApplicationController
-  # ゲストユーザーとしてログインした場合は閲覧を制限する
+  # ゲストユーザーとしてログインした場合は閲覧を制限
   before_action :guest_check,except: [:index,:show]
   before_action :authenticate_menber!
   def index
-    # @posts = Post.search(params[:search])
     if params[:search].blank? && params[:genre_id].blank?
-      @posts = Post.all
+      @posts = Post.all.page(params[:page]).per(4)
     elsif params[:search].present? && params[:genre_id].blank?
       @posts = Post.where("title LIKE ?","%#{params[:search]}%")
     elsif params[:search].blank? && params[:genre_id].present?

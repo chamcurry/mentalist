@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :authenticate_menber!
   def index
     if params[:search].blank? && params[:genre_id].blank?
-      @posts = Post.all.page(params[:page]).per(4)
+      @posts = Post.all.page(params[:page]).per(6)
     elsif params[:search].present? && params[:genre_id].blank?
       @posts = Post.where("title LIKE ?","%#{params[:search]}%")
     elsif params[:search].blank? && params[:genre_id].present?

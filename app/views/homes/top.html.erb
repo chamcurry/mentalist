@@ -28,7 +28,7 @@
           <% end %>
         </div>
 
-        <div class="card-body bg-dark text-light mt-1" style="height: 12rem;">
+        <div class="card-body bg-dark text-light mt-1" style="height: 13rem;">
               <%=post.created_at.strftime('%Y/%m/%d')%>
           <h5 class="card-title mb-0"><%=post.title%></h5>
           <div class="card-text">
@@ -37,6 +37,7 @@
                 <span class= 'badge badge-secondary'><%= genre.soup %></span>
               <% end %>
             </div>
+            <div><%= post.body.truncate(15) %></div>
             <span id="star-rate-<%= post.id %>">
               <script>
                 $('#star-rate-<%= post.id %>').raty({

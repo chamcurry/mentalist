@@ -13,7 +13,9 @@
 
   <body class="bg-light">
   <header>
-      <%= flash[:notice] %>
+      <div class= "row d-flex justify-content-center bg-dark">
+        <p class= "text-muted m-0"><%= flash[:notice] %></p>
+      </div>
       <!--<p class="alert alert-primary"></p>-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark my-0 py-0 h6">
       <%=link_to root_path do %>
@@ -21,7 +23,7 @@
       <% end %>
     <% if menber_signed_in? %>
       <%=link_to my_page_menbers_path do %>
-          <%= image_tag current_menber.get_profile_image,size: "60x60",class: "mx-3 my-1" %>
+          <%= image_tag current_menber.get_profile_image,size: "55x55",class: "my-1" %>
       <% end %>
     <% end %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -12,15 +12,16 @@
           <% end %>
         </div>
 
-        <div class="card-body bg-dark text-light mt-1" style="height: 12rem;">
+        <div class="card-body bg-dark text-light mt-1" style="height: 13rem;">
               <%=post.created_at.strftime('%Y/%m/%d')%>
-          <h5 class="card-title mb-0"><%=post.title%></h5>
+          <div class="card-title mb-0"><%=post.title%></div>
           <div class="card-text">
             <div>
               <% post.genres.each do |genre| %>
                 <span class= 'badge badge-secondary'><%= genre.soup %></span>
               <% end %>
             </div>
+            <div><%= post.body.truncate(15) %></div>
             <span id="star-rate-<%= post.id %>">
               <script>
                 $('#star-rate-<%= post.id %>').raty({
@@ -61,6 +62,6 @@
   <% end %>
   </div>
   <div class="row d-flex justify-content-center">
-    <%= paginate posts,theme: 'twitter-bootstrap-4'%>
+    <!--<%#= paginate posts,theme: 'twitter-bootstrap-4'%>-->
   </div>
 </div>

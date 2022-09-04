@@ -28,9 +28,9 @@
     <div class="col-xl-7 col-lg-8">
       <p class="text-center">投稿リスト</p>
       <% @posts.reverse_each do |post| %>
-        <div class="card-deck mb-2">
-          <div class="card p-1 col-sm-4">
-            <div class="card-img">
+        <div class="card-deck mb-2 border-0">
+          <div class="card p-1 col-md-4 h-100">
+            <div class="card-img p-0">
              <%=link_to post_path(post) do %>
                 <% if post.image.attached? %>
                  <%=image_tag post.image,width: "100%"%>
@@ -38,13 +38,13 @@
              <% end %>
             </div>
           </div>
-          <div class="col-md-8 card-body m-1 bg-dark text-light">
+          <div class="col-sm-8 card-body m-1 bg-dark text-light">
             <div><%=post.created_at.strftime('%Y/%m/%d')%></div>
             <h5><%=post.title%></h5>
             <% post.genres.each do |genre| %>
                <span class= 'badge badge-secondary'><%= genre.soup %></span>
             <% end %>
-            <div><%= post.body.truncate(13) %></div>
+            <div><%= post.body.truncate(20) %></div>
             <div id="star-rate-<%= post.id %>"></div>
             <script>
               $('#star-rate-<%= post.id %>').raty({
@@ -58,7 +58,7 @@
               });
             </script>
             <%#= post.star %>
-            <div class="row">
+            <div class="row mt-3">
               <i class="far fa-comment-alt d-flex align-items-center text-info mx-3"><%= post.comments.count%></i>
                 <% if post.favorited_by?(current_menber) %>
                  <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->

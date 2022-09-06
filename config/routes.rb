@@ -17,8 +17,8 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
-  devise_scope :admin do
-    post '/menbers/guest_sign_in' => 'admin/sessions#guest_log_in'
+  devise_scope :menber do
+    post '/guest_sign_in' => 'menber/sessions#guest_sign_in'
   end
 
   resource :menbers,only:[:edit,:update] do
@@ -27,10 +27,11 @@ Rails.application.routes.draw do
     patch :withdraw
   end
 
-  resources :posts,only:[:index,:new,:create,:show,:destroy] do
+  resources :posts,only:[:index,:new,:create,:show] do
     resource :favorites,only:[:create,:destroy]
     resources :comments,only:[:create,:destroy]
   end
+  delete '/posts/:id' => 'posts#destroy',as: "post_delete"
   get 'search' => 'posts#search'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -12,18 +12,15 @@ class Menber < ApplicationRecord
       self.first_name + " " + self.last_name
   end
 
+  def self.guest_user
+    find_or_create_by!(email: 'guest_user@example.com')
+  end
+
   def get_profile_image
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/user.jpg')
       profile_image.attach(io: File.open(file_path), filename: 'user.jpg',content_type: 'image/jpg')
     end
    profile_image
-  end
-      # ゲストユーザー
-  def self.guest_user
-    find_or_create_by!(email: 'guest_user@example.com') do |guest|
-      guest.password = SecureRandom.urlsafe_base64
-      # guest.password_confirmation = user.password
-    end
   end
 end

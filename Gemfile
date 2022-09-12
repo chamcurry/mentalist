@@ -6,7 +6,7 @@ gem 'rails', '~> 6.0.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3','~>1.4'
 # Use Puma as the app server
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 6.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -54,3 +54,10 @@ gem 'rails-i18n', '~> 6.0'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'order_as_specified'
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
+gem "net-smtp"
+gem "net-pop"
+gem "net-imap"

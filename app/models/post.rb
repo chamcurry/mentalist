@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   has_many :genres,through: :post_genres,dependent: :destroy
   has_many :favorites,dependent: :destroy
   has_many :comments,dependent: :destroy
+  # default_scope -> { reorder(creaated_at: :desc) }
   has_one_attached :image
   validates :title,:body,:image,:star,presence: true
 

@@ -1,3 +1,15 @@
 // Place all the styles related to the admin/homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.top-image {
+  background-image: image-url("top_page.jpg");
+  background-size: cover;
+  background-position: center top 30%;
+  background-repeat: no-repeat;
+}
+
+.top-title {
+  color:#ffffff;
+  font-weight: bold;
+  -webkit-text-stroke: 1.2px dimgray;
+}

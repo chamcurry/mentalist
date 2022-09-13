@@ -2,8 +2,8 @@ class FavoritesController < ApplicationController
   def create
     post = Post.find(params[:post_id])
     favorite = current_menber.favorites.new(post_id: post.id)
-    fav = favorite.reorder("favorites.uodated_at DESC")
-    fav.save
+    # fav = favorite.reorder("favorites.uodated_at DESC")
+    favorite.save
     redirect_back fallback_location: {action: "create"}
   end
 

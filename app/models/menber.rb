@@ -12,10 +12,10 @@ class Menber < ApplicationRecord
       self.first_name + " " + self.last_name
   end
 
-  def self.guest_user
-    find_or_create_by!(last_name: 'ゲスト',first_name: 'ユーザー',is_active: 'false',email: 'guest_user@example.com')
-    # find_or_create_by!(email: 'guest_user@example.com')
-  end
+  # def self.guest_user
+  #   find_or_create_by!(last_name: 'ゲスト',first_name: 'ユーザー',is_active: 'false',email: 'guest_user@example.com',encrypted_password: '12345678',reset_password_token: '12345678')
+  #   # find_or_create_by!(email: 'guest_user@example.com')
+  # end
 
   def get_profile_image
     unless profile_image.attached?

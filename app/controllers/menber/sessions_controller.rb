@@ -4,7 +4,7 @@ class Menber::SessionsController < Devise::SessionsController
   before_action :configure_sign_in_params, only: [:create]
 
   def guest_sign_in
-    guest = Menber.guest_user
+    guest = Menber.find(1)
     sign_in guest   # ユーザーをログインさせる
     redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
   end
@@ -38,7 +38,7 @@ class Menber::SessionsController < Devise::SessionsController
     return if !@menber # [処理内容２]取得したアカウントのパスワードと入力されたパスワードが一致しているか判別
       # [処理内容３]is_activeの値がtrueだった場合、サインアップ画面に遷移させる
     if @menber.valid_password?(params[:menber][:password]) && @menber.is_active == true
-       redirect_to new_menber_registration_path,notice: 'このアカウントは既に退会されています。'
+      redirect_to new_menber_registration_path,notice: 'このアカウントは既に退会されています。'
     end
   end
 end

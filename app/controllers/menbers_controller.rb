@@ -18,15 +18,17 @@ class MenbersController < ApplicationController
       favorite_post_ids = @favorite.ids
       @favorite = Post.where(id: (target_genre_post_ids & favorite_post_ids))
       @posts = Kaminari.paginate_array(@favorite).page(params[:page]).per(6)
-
    else
-      # search title
-      favorites_ids = @favorite.where("title LIKE ?","%#{params[:search]}%").ids
-      # search genre
-      target_genre_post_ids = Genre.find(params[:genre_id]).posts.ids
-      favorite_post_ids = @favorite.ids
-      @favorite = Post.where(id: ((target_genre_post_ids & favorite_post_ids) + favorites_ids).uniq)
-      @posts = Kaminari.paginate_array(@favorite).page(params[:page]).per(6)
+      @posts = Genre.find(params[:genre_id]).posts.where("title LIKE ?","%#{params[:search]}%")
+      @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(6)
+      
+   #  # search title
+   #  favorites_ids = @favorite.where("title LIKE ?","%#{params[:search]}%").ids
+   #  # search genre
+   #  target_genre_post_ids = Genre.find(params[:genre_id]).posts.ids
+   #  favorite_post_ids = @favorite.ids
+   #  @favorite = Post.where(id: ((target_genre_post_ids & favorite_post_ids) + favorites_ids).uniq)
+   #  @posts = Kaminari.paginate_array(@favorite).page(params[:page]).per(6)
    end
   end
   def my_page

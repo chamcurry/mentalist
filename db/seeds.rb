@@ -5,13 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Genre.create([
-  { soup: '醤油' },
-  { soup: '味噌' },
-  { soup: '塩' },
-  { soup: '豚骨' }
-])
+# Genre.create([
+#   { soup: '醤油' },
+#   { soup: '味噌' },
+#   { soup: '塩' },
+#   { soup: '豚骨' }
+# ])
 
 Menber.create([
-    {last_name: 'ゲスト',first_name: 'ユーザー',is_active: 'false',email: 'guest_user@example.com'}
+  {last_name: 'ゲスト',first_name: 'ユーザー',is_active: 'false',email: 'guest_user@example.com',password: 'aa12345bb'}
 ])

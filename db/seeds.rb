@@ -11,6 +11,6 @@ Genre.create([
   { soup: '塩' },
   { soup: '豚骨' }
 ])
-Menber.create([
-    {last_name: 'ゲスト',first_name: 'ユーザー',is_active: 'false',email: 'guest_user@example.com'}
-  ])
+# guest_user = Menber.create([
+#     {last_name: 'ゲスト',first_name: 'ユーザー',is_active: 'false',email: 'guest_user@example.com'}
+#   ])

@@ -84,12 +84,10 @@ ActiveRecord::Schema.define(version: 2022_07_31_085214) do
   end
 
   create_table "post_genres", force: :cascade do |t|
-    t.integer "post_id", null: false
-    t.integer "genre_id", null: false
+    t.integer "post_id"
+    t.integer "genre_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["genre_id"], name: "index_post_genres_on_genre_id"
-    t.index ["post_id"], name: "index_post_genres_on_post_id"
   end
 
   create_table "posts", force: :cascade do |t|

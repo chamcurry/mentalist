@@ -17,7 +17,7 @@
         <% @kaminari.each do |menber| %>
           <tr>
             <td><%= menber.id %></td>
-            <td><%=menber.first_name %></td>
+            <td><%=menber.full_name %></td>
             <td><%= menber.email %></td>
             <!--下に退会ステータスを表示する-->
             <% if menber.is_active %>

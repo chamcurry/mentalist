@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+
+ 
+.card-img {
+  position: relative;
+}
+
+.card-img-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 50px;
+  left: 0;
+  padding: 1.25rem;
+}
+
+.strftime {
+  font-size: small
+}

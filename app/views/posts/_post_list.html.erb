@@ -3,13 +3,12 @@
   <% posts.last(6).each do |post| %>
     <div class="col-lg-4 col-md-6 col-sm-6">
      <div class="card-deck">
+    <%= link_to post_path(post) do %>
       <div class="card p-1">
         <div class="card-img">
-          <%= link_to post_path(post) do %>
             <% if post.image.attached? %>
               <%= image_tag post.image,:style =>"max-width: 100%";%>
             <% end %>
-          <% end %>
         </div>
         <div class="card-img-overlay">
           <span id="star-rate-<%= post.id %>">
@@ -26,6 +25,7 @@
               </script>
             </span>
         </div>
+    <% end %>
         <div class="card-body bg-dark text-light mt-1 pt-2" style="height: 12rem;">
             <div class="row h6 my-0 d-flex align-items-center">
                 <%= image_tag post.menber.get_profile_image,size: "30x30",class: "border rounded-circle mx-2"%>
@@ -73,5 +73,5 @@
     </div>
   <% end %>
   </div>
-  
+
 </div>

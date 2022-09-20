@@ -26,12 +26,9 @@
               </script>
             </span>
         </div>
-
         <div class="card-body bg-dark text-light mt-1 pt-2" style="height: 12rem;">
             <div class="row h6 my-0 d-flex align-items-center">
-              <% if menber_signed_in? && menber.id != 1 %>
-                  <%= image_tag current_menber.get_profile_image,size: "30x30",class: "border rounded-circle mx-2"%>
-              <% end %>
+                <%= image_tag post.menber.get_profile_image,size: "30x30",class: "border rounded-circle mx-2"%>
               <%=post.menber.full_name.truncate(5) %>
               <div class="strftime col d-flex justify-content-end">
                 <%=post.created_at.strftime('%y/%m/%d') %>
@@ -76,7 +73,5 @@
     </div>
   <% end %>
   </div>
-  <div class="row d-flex justify-content-center">
-    <%= paginate posts,theme: 'twitter-bootstrap-4'%>
-  </div>
+  
 </div>

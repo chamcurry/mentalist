@@ -12,3 +12,6 @@
 </div>
 
 <%= render 'post_list',post: @post,posts: @posts,menber: @menber %>
+<div class="row d-flex justify-content-center">
+    <%= paginate @posts,theme: 'twitter-bootstrap-4'%>
+</div>

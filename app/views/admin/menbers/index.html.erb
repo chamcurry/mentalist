@@ -21,9 +21,9 @@
             <td><%= menber.email %></td>
             <!--下に退会ステータスを表示する-->
             <% if menber.is_active %>
-              <td>退会</td>
-            <% else %>
               <td>有効</td>
+            <% else %>
+              <td>退会</td>
             <% end %>
             <td><%= link_to "退会にする",admin_menber_withdraw_path(menber.id),method: :patch,data:{confirm: "退会させますか？"},class: "btn btn-danger btn-sm m-1"%><%= link_to "有効にする",admin_menber_path(menber.id),method: :patch,data:{confirm: "有効にしますか？"},class: "btn btn-primary btn-sm m-1"%></td>
           </tr>

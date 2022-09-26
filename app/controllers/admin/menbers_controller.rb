@@ -6,13 +6,13 @@ class Admin::MenbersController < ApplicationController
 
   def update
     @menber = Menber.find(params[:id])
-    @menber.update(is_active: false)
+    @menber.update(is_active: true)
     redirect_to admin_menbers_path
   end
 
   def withdraw
     @menber = Menber.find(params[:id])
-    @menber.update(is_active: true)
+    @menber.update(is_active: false)
     redirect_to admin_menbers_path
   end
 end

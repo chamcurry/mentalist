@@ -37,7 +37,7 @@ class Menber::SessionsController < Devise::SessionsController
     # アカウントが取得できない場合、このメソッドを終了する
     return if !@menber # [処理内容２]取得したアカウントのパスワードと入力されたパスワードが一致しているか判別
       # [処理内容３]is_activeの値がtrueだった場合、サインアップ画面に遷移させる
-    if @menber.valid_password?(params[:menber][:password]) && @menber.is_active == true
+    if @menber.valid_password?(params[:menber][:password]) && @menber.is_active == false
       redirect_to new_menber_registration_path,notice: 'このアカウントは既に退会されています。'
     end
   end

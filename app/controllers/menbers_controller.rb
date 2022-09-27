@@ -3,27 +3,26 @@ class MenbersController < ApplicationController
 
   def like_list
    favorite = Favorite.where(menber_id: current_menber.id).pluck(:post_id)
-   @favorite = Post.where(id: favorite)
+   favorite_post = Post.where(id: favorite)
    if params[:search].blank? && params[:genre_id].blank?
-      @posts = Kaminari.paginate_array(@favorite).page(params[:page]).per(6)
+      @posts = Kaminari.paginate_array(favorite_post).page(params[:page]).per(6)
 
    elsif params[:search].present? && params[:genre_id].blank?
-      favorites = @favorite.where("title LIKE ?","%#{params[:search]}%")
-      @posts = Kaminari.paginate_array(favorites).page(params[:page]).per(6)
+      favorite = favorite_post.where("title LIKE ?","%#{params[:search]}%")
+      @posts = Kaminari.paginate_array(favorite).page(params[:page]).per(6)
 
    elsif params[:search].blank? && params[:genre_id].present?
       target_genre_post_ids = Genre.find(params[:genre_id]).posts.ids
-      favorite_post_ids = @favorite.ids
-      @favorite = Post.where(id: (target_genre_post_ids & favorite_post_ids))
-      @posts = Kaminari.paginate_array(@favorite).page(params[:page]).per(6)
+      favorite_post_ids = favorite_post.ids
+      favorite = Post.where(id: (target_genre_post_ids & favorite_post_ids))
+      @posts = Kaminari.paginate_array(favorite).page(params[:page]).per(6)
    else
       @posts = Genre.find(params[:genre_id]).posts.where("title LIKE ?","%#{params[:search]}%")
       @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(6)
    end
   end
   def my_page
-   @menber = current_menber
-   @posts = @menber.posts.all
+   @posts = current_menber.posts.all
   end
   def edit
    @menber = current_menber

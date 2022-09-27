@@ -3,7 +3,7 @@ class HomesController < ApplicationController
 
   def top
     @posts = Post.all.order(id: "DESC").page(params[:page]).per(6)
-    @menber = current_menber
+    # @menber = current_menber
     @menbers = Menber.all
   end
 end

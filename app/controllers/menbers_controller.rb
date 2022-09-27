@@ -2,7 +2,6 @@ class MenbersController < ApplicationController
   before_action :guest_check
 
   def like_list
-   @menber = current_menber
    favorite = Favorite.where(menber_id: current_menber.id).pluck(:post_id)
    @favorite = Post.where(id: favorite)
    if params[:search].blank? && params[:genre_id].blank?

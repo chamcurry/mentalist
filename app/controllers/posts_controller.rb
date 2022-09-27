@@ -37,7 +37,6 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_comment = Comment.new
-    @menber = current_menber
   end
 
   def destroy

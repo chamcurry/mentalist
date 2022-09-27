@@ -49,7 +49,7 @@
                 <% end %>
                 <i class="far fa-comment-alt text-info mx-2"><%= post.comments.count%></i>
                 <!--メンバーがサインインかつ、idが１では無いとき-->
-                <% if menber_signed_in? && menber.id != 1 %>
+                <% if menber_signed_in? && current_menber.id != 1 %>
                   <!--投稿に紐ついているいいねがログインしているメンバーのものなら-->
                   <% if post.favorited_by?(current_menber) %>
                     <%= link_to post_favorites_path(post), method: :delete do %>

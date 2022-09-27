@@ -30,7 +30,7 @@
                 <%#= post.star %>
                 <div class="row d-flex align-items-center mt-2">
                   <i class="far fa-comment-alt  text-info mx-3"><%= @post.comments.count%></i>
-                  <% if menber_signed_in? && @menber.id != 1 %>
+                  <% if menber_signed_in? && current_menber.id != 1 %>
                   <!--投稿に紐ついているいいねがログインしているメンバーのものなら-->
                     <% if @post.favorited_by?(current_menber) %>
                       <%= link_to post_favorites_path(@post), method: :delete do %>
@@ -76,7 +76,7 @@
     </div>
     <div class="col order-md-2 order-sm-2 mr-4 d-flex justify-content-start">
       <div class="row my-2">
-        <% if menber_signed_in? && @menber.id != 1 %>
+        <% if menber_signed_in? && current_menber.id != 1 %>
             <%= image_tag current_menber.get_profile_image,size: "50x50",class: "border rounded-circle mx-2"%>
             <%= form_with model: [@post,@post_comment] do |f| %>
             <div class="col-6 form-group">

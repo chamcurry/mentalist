@@ -6,7 +6,7 @@ class Menber::SessionsController < Devise::SessionsController
   def guest_sign_in
     guest = Menber.find(1)
     sign_in guest   # ユーザーをログインさせる
-    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+    redirect_to root_path, notice: "ゲストユーザーとしてログインしました。"
   end
   # GET /resource/sign_in
   # def new
@@ -25,20 +25,19 @@ class Menber::SessionsController < Devise::SessionsController
   # end
 
   protected
-
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
   # 退会しているか判断するためのメソッド
-  def configure_sign_in_params
-    # [処理内容１]入力されたemailからアカウントを1件取得
-    @menber = Menber.find_by(email: params[:menber][:email])
-    # アカウントが取得できない場合、このメソッドを終了する
-    return if !@menber # [処理内容２]取得したアカウントのパスワードと入力されたパスワードが一致しているか判別
-      # [処理内容３]is_activeの値がtrueだった場合、サインアップ画面に遷移させる
-    if @menber.valid_password?(params[:menber][:password]) && @menber.is_active == false
-      redirect_to new_menber_registration_path,notice: 'このアカウントは既に退会されています。'
+    def configure_sign_in_params
+      # [処理内容１]入力されたemailからアカウントを1件取得
+      @menber = Menber.find_by(email: params[:menber][:email])
+      # アカウントが取得できない場合、このメソッドを終了する
+      return if !@menber # [処理内容２]取得したアカウントのパスワードと入力されたパスワードが一致しているか判別
+        # [処理内容３]is_activeの値がtrueだった場合、サインアップ画面に遷移させる
+      if @menber.valid_password?(params[:menber][:password]) && @menber.is_active == false
+        redirect_to new_menber_registration_path,notice: "このアカウントは既に退会されています。"
+      end
     end
-  end
 end

@@ -13,12 +13,12 @@ Rails.application.configure do
   config.consider_all_requests_local = true
 
   # Enable/disable caching. By default caching is disabled.
-  if Rails.root.join('tmp/caching-dev.txt').exist?
+  if Rails.root.join("tmp/caching-dev.txt").exist?
     config.action_controller.perform_caching = true
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => 'public, max-age=172800'
+      "Cache-Control" => "public, max-age=172800"
     }
   else
     config.action_controller.perform_caching = false
@@ -32,7 +32,7 @@ Rails.application.configure do
   # コントローラのキャッシュ設定するかの設定
   config.action_mailer.perform_caching = true
   
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
   # 電子メールの配信方法を設定
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
@@ -40,10 +40,10 @@ Rails.application.configure do
     :address => "smtp.gmail.com",
     # 利用者の電子メールソフトからメール送信サーバにメールを投稿する際に用いる
     :port => 587,
-    :domain => 'gmail.com',
+    :domain => "gmail.com",
     :user_name => ENV["GOOGLE_MAIL_ADDRESS"],
     :password => ENV["GOOGLE_MAILER_PASSWORD"],
-    :authentication => 'login'
+    :authentication => "login"
   }
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

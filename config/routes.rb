@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   root to: "homes#top"
   namespace :admin do
     resources :menbers,only:[:index,:update]
-    patch 'menbers/:id/withdraw' => 'menbers#withdraw',as: "menber_withdraw"
+    patch "menbers/:id/withdraw" => "menbers#withdraw",as: "menber_withdraw"
     resources :genres,only:[:index,:create,:destroy]
     resources :posts,only:[:index,:show]
-    delete '/posts/:id' => 'posts#destroy',as: "post_delete"
+    delete "/posts/:id" => "posts#destroy",as: "post_delete"
   end
 
   devise_for :menber,controllers: {
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   }
 
   devise_scope :menber do
-    post '/guest_sign_in' => 'menber/sessions#guest_sign_in'
+    post "/guest_sign_in" => "menber/sessions#guest_sign_in"
   end
 
   resource :menbers,only:[:edit,:update] do
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     resource :favorites,only:[:create,:destroy]
     resources :comments,only:[:create,:destroy]
   end
-  delete '/posts/:id' => 'posts#destroy',as: "post_delete"
-  get 'search' => 'posts#search'
+  delete "/posts/:id" => "posts#destroy",as: "post_delete"
+  get "search" => "posts#search"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

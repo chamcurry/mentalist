@@ -6,32 +6,29 @@ class PostsController < ApplicationController
     @menber = current_menber
     if params[:search].blank? && params[:genre_id].blank?
       @posts = Post.all.order(id: "DESC").page(params[:page]).per(6)
-
     elsif params[:search].present? && params[:genre_id].blank?
       @posts = Post.where("title LIKE ?","%#{params[:search]}%")
       @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(6)
-
     elsif params[:search].blank? && params[:genre_id].present?
       @posts = Genre.find(params[:genre_id]).posts
       @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(6)
-
     else
       @posts = Genre.find(params[:genre_id]).posts.where("title LIKE ?","%#{params[:search]}%")
       @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(6)
     end
   end
-
+  
   def new
     @post = Post.new
   end
-
+  
   def create
     @post = current_menber.posts.new(post_params)
-   if @post.save
-      redirect_to my_page_menbers_path
-   else
-      render :new
-   end
+    if @post.save
+     redirect_to my_page_menbers_path
+    else
+     render :new
+    end
   end
 
   def show

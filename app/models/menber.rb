@@ -13,6 +13,10 @@ class Menber < ApplicationRecord
       self.first_name + " " + self.last_name
   end
 
+  # def self.kaminari_array
+  #   Kaminari.paginate_array(favorite_post).page(params[:page]).per(6)
+  # end
+
   def get_profile_image
     unless profile_image.attached?
       file_path = Rails.root.join("app/assets/images/user.jpg")

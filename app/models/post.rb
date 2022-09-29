@@ -12,4 +12,5 @@ class Post < ApplicationRecord
   # favoritesテーブルに存在するか判断
     favorites.exists?(menber_id: menber.id)
   end
+
 end

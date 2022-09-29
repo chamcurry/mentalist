@@ -3,7 +3,6 @@ class PostsController < ApplicationController
   before_action :guest_check,except: [:index,:show]
   before_action :authenticate_menber!
   def index
-    @menber = current_menber
     if params[:search].blank? && params[:genre_id].blank?
       @posts = Post.all.order(id: "DESC").page(params[:page]).per(6)
     elsif params[:search].present? && params[:genre_id].blank?
@@ -17,11 +16,11 @@ class PostsController < ApplicationController
       @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(6)
     end
   end
-  
+
   def new
     @post = Post.new
   end
-  
+
   def create
     @post = current_menber.posts.new(post_params)
     if @post.save

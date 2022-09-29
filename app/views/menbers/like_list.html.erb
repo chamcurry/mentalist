@@ -1,14 +1,19 @@
 <p class="text-center my-3">お気に入りリスト</p>
-<div class="input-group my-2">
-  <%= form_with url: like_list_menbers_path,method: :get do |f|%>
-    <!--ジャンル検索-->
-  　<%= select_tag :genre_id,options_from_collection_for_select(Genre.all,:id,:soup,params[:genre_id]),{prompt: 'タグを選択'}%>
-  　<!--キーワード検索-->
-  　<%= f.text_field :search,placeholder: "キーワードを入力" %>
-  　<%= f.submit "検索",class: "fas fa-search btn btn-sm btn-primary" do%>
-  　<% end %>
-  <% end %>
+<%= form_with url: like_list_menbers_path,method: :get do |f|%>
+<div class="row search-group my-2 d-flex justify-content-center">
+  <!--ジャンル検索-->
+  <div class="genre-group mx-2 d-flex align-items-center">
+　  <%= select_tag :genre_id,options_from_collection_for_select(Genre.all,:id,:soup,params[:genre_id]),{prompt: 'タグを選択'}%>
+  </div>
+　<!--キーワード検索-->
+　<div class="mx-1 px-0 form-gruop">
+　  <%= f.text_field :search,placeholder: "キーワードを入力" %>
+　  <%= button_tag type: "submit" ,class: "btn btn-outline-black btn-sm " do%>
+　    <i class="fas fa-search"></i>
+　  <% end %>
+　</div>
 </div>
+<% end %>
 
 <%= render 'posts/post_list',posts: @posts,menber: @menber %>
 <div class="row d-flex justify-content-center">

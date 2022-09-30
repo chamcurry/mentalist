@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2022_07_31_085214) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "menber_id"
+    t.integer "member_id"
     t.integer "post_id"
     t.string "post_comment"
     t.datetime "created_at", null: false
@@ -54,11 +54,11 @@ ActiveRecord::Schema.define(version: 2022_07_31_085214) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "menber_id", null: false
+    t.integer "member_id", null: false
     t.integer "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["menber_id"], name: "index_favorites_on_menber_id"
+    t.index ["member_id"], name: "index_favorites_on_member_id"
     t.index ["post_id"], name: "index_favorites_on_post_id"
   end
 
@@ -68,10 +68,10 @@ ActiveRecord::Schema.define(version: 2022_07_31_085214) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "menbers", force: :cascade do |t|
+  create_table "members", force: :cascade do |t|
     t.string "last_name"
     t.string "first_name"
-    t.boolean "is_active", default: false
+    t.boolean "is_active", default: true
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -79,8 +79,8 @@ ActiveRecord::Schema.define(version: 2022_07_31_085214) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_menbers_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_menbers_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_members_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
   end
 
   create_table "post_genres", force: :cascade do |t|
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 2022_07_31_085214) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer "menber_id"
+    t.integer "member_id"
     t.string "title"
     t.string "body"
     t.float "star"
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 2022_07_31_085214) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "favorites", "menbers"
+  add_foreign_key "favorites", "members"
   add_foreign_key "favorites", "posts"
   add_foreign_key "post_genres", "genres"
   add_foreign_key "post_genres", "posts"

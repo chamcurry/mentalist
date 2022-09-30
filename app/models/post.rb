@@ -8,9 +8,9 @@ class Post < ApplicationRecord
   has_one_attached :image
   validates :title,:body,:image,:star,presence: true
 
-  def favorited_by?(menber)
+  def favorited_by?(member)
   # favoritesテーブルに存在するか判断
-    favorites.exists?(menber_id: menber.id)
+    favorites.exists?(member_id: member.id)
   end
 
 end

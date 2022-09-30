@@ -21,9 +21,9 @@
       <%=link_to root_path do %>
         <%= image_tag "logo_transparent.png",width: '150px',class: "img-fluid"%>
       <% end %>
-    <% if menber_signed_in? %>
-      <%=link_to my_page_menbers_path do %>
-          <%= image_tag current_menber.get_profile_image,size: "55x55",class: "my-1" %>
+    <% if member_signed_in? %>
+      <%=link_to my_page_members_path do %>
+          <%= image_tag current_member.get_profile_image,size: "55x55",class: "my-1" %>
       <% end %>
     <% end %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +38,7 @@
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to admin_menbers_path,class: "nav-link" do %>
+          <%= link_to admin_members_path,class: "nav-link" do %>
            <i class="far fa-address-book"></i> 会員一覧
           <% end %>
         </li>
@@ -53,10 +53,10 @@
           <% end %>
         </li>
       </ul>
-    <% elsif menber_signed_in? %>
+    <% elsif member_signed_in? %>
       <ul class="navbar-nav mx-auto">
         <li class="nav-item text-light">
-          <%= link_to my_page_menbers_path,class: "nav-link" do %>
+          <%= link_to my_page_members_path,class: "nav-link" do %>
            <i class="far fa-address-card"></i> マイページ
           <% end %>
         </li>
@@ -71,12 +71,12 @@
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to like_list_menbers_path,class: "nav-link" do %>
+          <%= link_to like_list_members_path,class: "nav-link" do %>
            <i class="far fa-bookmark"></i> お気に入り
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to destroy_menber_session_path,method: :delete,class: "nav-link" do %>
+          <%= link_to destroy_member_session_path,method: :delete,class: "nav-link" do %>
            ログアウト
           <% end %>
         </li>
@@ -94,12 +94,12 @@
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to new_menber_registration_path,class: "nav-link" do %>
+          <%= link_to new_member_registration_path,class: "nav-link" do %>
            <i class="far fa-plus-square"></i> 会員登録
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to new_menber_session_path,class: "nav-link" do %>
+          <%= link_to new_member_session_path,class: "nav-link" do %>
           <i class="far fa-check-square"></i> ログイン
           <% end %>
         </li>

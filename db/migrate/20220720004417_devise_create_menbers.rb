@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class DeviseCreateMenbers < ActiveRecord::Migration[5.0]
+class DeviseCreateMembers < ActiveRecord::Migration[5.0]
   def change
-    create_table :menbers do |t|
+    create_table :members do |t|
       #追加したカラム
       t.string :last_name
       t.string :first_name
@@ -40,9 +40,9 @@ class DeviseCreateMenbers < ActiveRecord::Migration[5.0]
       t.timestamps null: false
     end
 
-    add_index :menbers, :email,                unique: true
-    add_index :menbers, :reset_password_token, unique: true
-    # add_index :menbers, :confirmation_token,   unique: true
-    # add_index :menbers, :unlock_token,         unique: true
+    add_index :members, :email,                unique: true
+    add_index :members, :reset_password_token, unique: true
+    # add_index :members, :confirmation_token,   unique: true
+    # add_index :members, :unlock_token,         unique: true
   end
 end

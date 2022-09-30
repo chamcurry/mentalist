@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     end
     # もしログインしているIDがゲストユーザーなら遷移させる
     def guest_check
-      if current_menber == Menber.find(1)
+      if current_member == Member.find(1)
         redirect_to root_path, notice: "こちらを利用するには会員登録が必要です。"
       end
     end

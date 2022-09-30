@@ -2,15 +2,15 @@ Rails.application.routes.draw do
 
   root to: "homes#top"
   namespace :admin do
-    resources :menbers,only:[:index,:update]
-    patch "menbers/:id/withdraw" => "menbers#withdraw",as: "menber_withdraw"
+    resources :members,only:[:index,:update]
+    patch "members/:id/withdraw" => "members#withdraw",as: "member_withdraw"
     resources :genres,only:[:index,:create,:destroy]
     resources :posts,only:[:index,:show]
     delete "/posts/:id" => "posts#destroy",as: "post_delete"
   end
 
-  devise_for :menber,controllers: {
-    sessions: "menber/sessions"
+  devise_for :member,controllers: {
+    sessions: "member/sessions"
   }
 
   devise_for :admin,skip:[:passwords],controllers: {
@@ -18,11 +18,11 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
-  devise_scope :menber do
-    post "/guest_sign_in" => "menber/sessions#guest_sign_in"
+  devise_scope :member do
+    post "/guest_sign_in" => "member/sessions#guest_sign_in"
   end
 
-  resource :menbers,only:[:edit,:update] do
+  resource :members,only:[:edit,:update] do
     get :like_list
     get :my_page
     patch :withdraw

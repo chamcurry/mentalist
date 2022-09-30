@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  belongs_to :menber
+  belongs_to :member
   has_many :post_genres,dependent: :destroy
   has_many :genres,through: :post_genres,dependent: :destroy
   has_many :favorites,dependent: :destroy

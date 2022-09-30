@@ -1,8 +1,8 @@
-class MenbersController < ApplicationController
+class MembersController < ApplicationController
   before_action :guest_check
 
   def like_list
-    favorite = Favorite.where(menber_id: current_menber.id).pluck(:post_id)
+    favorite = Favorite.where(member_id: current_member.id).pluck(:post_id)
     favorite_post = Post.where(id: favorite)
     if params[:search].blank? && params[:genre_id].blank?
       @posts = Kaminari.paginate_array(favorite_post).page(params[:page]).per(6)
@@ -20,33 +20,33 @@ class MenbersController < ApplicationController
     end
   end
   def my_page
-    @posts = current_menber.posts.all
+    @posts = current_member.posts.all
   end
   def edit
-    @menber = current_menber
-    if @menber == current_menber
+    @member = current_member
+    if @member == current_member
       render :edit
     else
       redirect_to root_path
     end
   end
   def update
-    @menber = current_menber
-    if @menber == current_menber
-      @menber.update(menber_params)
-      redirect_to my_page_menbers_path
+    @member = current_member
+    if @member == current_member
+      @member.update(member_params)
+      redirect_to my_page_members_path
     else
       render :edit
     end
   end
   def withdraw
-    @menber = current_menber
-    @menber.update(is_active: true)
+    @member = current_member
+    @member.update(is_active: true)
     reset_session
     redirect_to root_path
   end
   private
-  def menber_params
-    params.require(:menber).permit(:last_name,:first_name,:is_active,:email,:profile_image)
+  def member_params
+    params.require(:member).permit(:last_name,:first_name,:is_active,:email,:profile_image)
   end
 end

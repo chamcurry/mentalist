@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-class Menber::SessionsController < Devise::SessionsController
+class Member::SessionsController < Devise::SessionsController
   before_action :configure_sign_in_params, only: [:create]
 
   def guest_sign_in
-    guest = Menber.find(1)
+    guest = Member.find(1)
     sign_in guest   # ユーザーをログインさせる
     redirect_to root_path, notice: "ゲストユーザーとしてログインしました。"
   end
@@ -32,12 +32,12 @@ class Menber::SessionsController < Devise::SessionsController
   # 退会しているか判断するためのメソッド
     def configure_sign_in_params
       # [処理内容１]入力されたemailからアカウントを1件取得
-      @menber = Menber.find_by(email: params[:menber][:email])
+      @member = Member.find_by(email: params[:member][:email])
       # アカウントが取得できない場合、このメソッドを終了する
-      return if !@menber # [処理内容２]取得したアカウントのパスワードと入力されたパスワードが一致しているか判別
+      return if !@member # [処理内容２]取得したアカウントのパスワードと入力されたパスワードが一致しているか判別
         # [処理内容３]is_activeの値がtrueだった場合、サインアップ画面に遷移させる
-      if @menber.valid_password?(params[:menber][:password]) && @menber.is_active == false
-        redirect_to new_menber_registration_path,notice: "このアカウントは既に退会されています。"
+      if @member.valid_password?(params[:member][:password]) && @member.is_active == false
+        redirect_to new_member_registration_path,notice: "このアカウントは既に退会されています。"
       end
     end
 end

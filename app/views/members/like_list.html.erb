@@ -1,5 +1,5 @@
 <p class="text-center my-3">お気に入りリスト</p>
-<%= form_with url: like_list_menbers_path,method: :get do |f|%>
+<%= form_with url: like_list_members_path,method: :get do |f|%>
 <div class="row search-group my-2 d-flex justify-content-center">
   <!--ジャンル検索-->
   <div class="genre-group mx-2 d-flex align-items-center">
@@ -15,7 +15,7 @@
 </div>
 <% end %>
 
-<%= render 'posts/post_list',posts: @posts,menber: @menber %>
+<%= render 'posts/post_list',posts: @posts,member: @member %>
 <div class="row d-flex justify-content-center">
     <%= paginate @posts,theme: 'twitter-bootstrap-4'%>
 </div>

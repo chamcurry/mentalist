@@ -30,9 +30,9 @@
                 <%#= post.star %>
                 <div class="row d-flex align-items-center mt-2">
                   <i class="far fa-comment-alt  text-info mx-3"><%= @post.comments.count%></i>
-                  <% if menber_signed_in? && current_menber.id != 1 %>
+                  <% if member_signed_in? && current_member.id != 1 %>
                   <!--投稿に紐ついているいいねがログインしているメンバーのものなら-->
-                    <% if @post.favorited_by?(current_menber) %>
+                    <% if @post.favorited_by?(current_member) %>
                       <%= link_to post_favorites_path(@post), method: :delete do %>
                         <i class="fas fa-heart text-danger"><%= @post.favorites.count%></i>
                       <% end %>
@@ -44,7 +44,7 @@
                   <% else %>
                     <i class="fas fa-heart text-muted"><%= @post.favorites.count %></i>
                   <% end %>
-                  <% if @post.menber == current_menber %>
+                  <% if @post.member == current_member %>
                     <%=link_to "削除",post_delete_path(@post),method: :delete,data:{confirm: "この投稿を削除しますか？"},class: "ml-4 btn btn-outline-danger btn-sm"%>
                   <% end %>
                 </div>
@@ -60,14 +60,14 @@
         <div class="card my-2 bg-light">
           <div class="row">
             <div class="card-title ml-3 mt-2">
-              <%= image_tag post_comments.menber.get_profile_image,size: "45x45",class: "border rounded-circle"%>
-              <%= post_comments.menber.full_name %>
+              <%= image_tag post_comments.member.get_profile_image,size: "45x45",class: "border rounded-circle"%>
+              <%= post_comments.member.full_name %>
               <%= post_comments.created_at.strftime('%Y/%m/%d') %>
             </div>
           </div>
           <div class="card-body p-2">
             <%= post_comments.post_comment %>
-            <% if post_comments.menber == current_menber %>
+            <% if post_comments.member == current_member %>
               <%=link_to "削除",post_comment_path(post_comments.post,post_comments),method: :delete,data:{confirm: "このコメントを削除しますか？"},class: "float-right btn btn-outline-danger btn-sm"%>
            <% end %>
           </div>
@@ -76,8 +76,8 @@
     </div>
     <div class="col order-md-2 order-sm-2 mr-4 d-flex justify-content-start">
       <div class="row my-2">
-        <% if menber_signed_in? && current_menber.id != 1 %>
-            <%= image_tag current_menber.get_profile_image,size: "50x50",class: "border rounded-circle mx-2"%>
+        <% if member_signed_in? && current_member.id != 1 %>
+            <%= image_tag current_member.get_profile_image,size: "50x50",class: "border rounded-circle mx-2"%>
             <%= form_with model: [@post,@post_comment] do |f| %>
             <div class="col-6 form-group">
               <%= f.text_area :post_comment,placeholder: "コメントを書く" %>

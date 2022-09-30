@@ -2,25 +2,25 @@
   <div class="row mt-3">
     <div class="col-xl-5 col-lg-4 d-flex flex-column align-items-center">
       <p>プロフィール</p>
-      <div><%=image_tag current_menber.get_profile_image,size: "200x200",class: " border rounded-circle" %></div>
+      <div><%=image_tag current_member.get_profile_image,size: "200x200",class: " border rounded-circle" %></div>
       <div class="my-3 float-left">
         <h5>投稿数:
           <%=@posts.length %>
         </h5>
         <h5>ユーザー名</h5>
         <div class= "border-bottom border-dark mb-2">
-          <%=current_menber.full_name %>
+          <%=current_member.full_name %>
         </div>
         <h5>メールアドレス:</h5>
         <div class= "border-bottom border-dark mb-2">
-          <%=current_menber.email %>
+          <%=current_member.email %>
         </div>
       </div>
       <div>
-        <%=link_to edit_menbers_path,class: "d-flex flex-column align-items-center btn btn-success mb-2" do %>
+        <%=link_to edit_members_path,class: "d-flex flex-column align-items-center btn btn-success mb-2" do %>
           編集する
         <% end %>
-        <%=link_to withdraw_menbers_path,method: :patch,data:{confirm: "本当に退会しますか？"},class: "btn btn-danger mb-2" do %>
+        <%=link_to withdraw_members_path,method: :patch,data:{confirm: "本当に退会しますか？"},class: "btn btn-danger mb-2" do %>
           退会する
         <% end %>
       </div>
@@ -59,7 +59,7 @@
             </script>
             <div class="row mt-3">
               <i class="far fa-comment-alt d-flex align-items-center text-info mx-3"><%= post.comments.count%></i>
-                <% if post.favorited_by?(current_menber) %>
+                <% if post.favorited_by?(current_member) %>
                  <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
                   <%= link_to post_favorites_path(post), method: :delete do %>
                     <i class="fas fa-heart text-danger"><%= post.favorites.count%></i>

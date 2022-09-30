@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   # ゲストユーザーとしてログインした場合は閲覧を制限
   before_action :guest_check,except: [:index,:show]
-  before_action :authenticate_menber!
+  before_action :authenticate_member!
   def index
     if params[:search].blank? && params[:genre_id].blank?
       @posts = Post.all.order(id: "DESC").page(params[:page]).per(6)
@@ -22,9 +22,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_menber.posts.new(post_params)
+    @post = current_member.posts.new(post_params)
     if @post.save
-     redirect_to my_page_menbers_path
+     redirect_to my_page_members_path
     else
      render :new
     end
@@ -42,6 +42,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:menber_id, :title,:body,:star,:image,genre_ids:[])
+    params.require(:post).permit(:member_id, :title,:body,:star,:image,genre_ids:[])
   end
 end

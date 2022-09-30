@@ -28,8 +28,8 @@
     <% end %>
         <div class="card-body bg-dark text-light mt-1 pt-2" style="height: 12rem;">
             <div class="row h6 my-0 d-flex align-items-center">
-                <%= image_tag post.menber.get_profile_image,size: "30x30",class: "border rounded-circle mx-2"%>
-              <%=post.menber.full_name.truncate(5) %>
+                <%= image_tag post.member.get_profile_image,size: "30x30",class: "border rounded-circle mx-2"%>
+              <%=post.member.full_name.truncate(5) %>
               <div class="strftime col d-flex justify-content-end">
                 <%=post.created_at.strftime('%y/%m/%d') %>
               </div>
@@ -49,9 +49,9 @@
                 <% end %>
                 <i class="far fa-comment-alt text-info mx-2"><%= post.comments.count%></i>
                 <!--メンバーがサインインかつ、idが１では無いとき-->
-                <% if menber_signed_in? && current_menber.id != 1 %>
+                <% if member_signed_in? && current_member.id != 1 %>
                   <!--投稿に紐ついているいいねがログインしているメンバーのものなら-->
-                  <% if post.favorited_by?(current_menber) %>
+                  <% if post.favorited_by?(current_member) %>
                     <%= link_to post_favorites_path(post), method: :delete do %>
                       <i class="fas fa-heart text-danger"><%= post.favorites.count%></i>
                     <% end %>

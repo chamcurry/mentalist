@@ -1,9 +1,10 @@
 class MembersController < ApplicationController
   before_action :guest_check
 
-  def like_list
-    favorite = Favorite.where(member_id: current_member.id).pluck(:post_id)
-    favorite_post = Post.where(id: favorite)
+  def like_list 
+    favorite = Favorite.where(member_id: current_member.id).order("created_at desc").pluck(:post_id)
+    favorite_post = Post.find(favorite)
+    #Post.joins(:favorite).where("favorites.member_id = ?",current_member.id).order("favorites.created_at desc")
     if params[:search].blank? && params[:genre_id].blank?
       @posts = Kaminari.paginate_array(favorite_post).page(params[:page]).per(6)
     elsif params[:search].present? && params[:genre_id].blank?

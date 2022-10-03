@@ -112,7 +112,11 @@
     <% end %>
     </nav>
   </header>
-   <%= yield %>
+  <main>
+    <%= yield %>
+    <%= render 'layouts/pagetop' %>
+  </main>
+
   <footer class="footer my-5">
     <div class="fixed-bottom bg-dark mx-auto">
       <p class="text-muted text-center mt-2">© 2022 麺多List</p>

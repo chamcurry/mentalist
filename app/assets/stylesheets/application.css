@@ -31,3 +31,29 @@
 .strftime {
   font-size: small
 }
+
+/* ページTOPに戻る */
+/*// ボタンの配置場所*/
+.pagetop{
+    display: block;
+    position: fixed;
+    right: 20px;
+    bottom: 50px;
+}
+/*// ボタンのデザイン*/
+.pagetop a{
+    display: block;
+    font-size: 0;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    background: gray;
+    border-radius: 50%;
+    line-height: 50px;
+}
+/*// アイコンのデザイン*/
+.pagetop a i{
+    font-size: 20px;
+    color:#fff;
+    line-height: 50px;
+}

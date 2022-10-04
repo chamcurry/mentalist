@@ -792,22 +792,13 @@
   })();
 }));
 
-// ページトップボタン表示
-/* global $*/
-$(document).on('turbolinks:load', function() {
-  // 画面をスクロールを起点
-  $(window).scroll(function () {
-    // ページのトップの位置をnowに代入
-    var now = $(window).scrollTop();
-  });
-});
-
 // ページトップへ戻るクリックで、スクロールして１番上に戻る
+/* global $*/
 $(document).on('turbolinks:load', function() {
   $(function(){
     $('.pagetop').click(function(){
       $('body,html').animate({
-      scrollTop: 0},500);
+      scrollTop: 0},800);
       return false;
     });
   });

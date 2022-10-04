@@ -1,29 +1,3 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-/* ページTOPに戻る */
-/*// ボタンの配置場所*/
-.pagetop{
-    display: block;
-    position: fixed;
-    right: 18px;
-    bottom: 50px;
-}
-/*// ボタンのデザイン*/
-.pagetop a{
-    display: block;
-    font-size: 0;
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    background: gray;
-    border-radius: 50%;
-    line-height: 50px;
-}
-/*// FontAwesomeアイコンのデザイン*/
-.pagetop a i{
-    font-size: 20px;
-    color:#fff;
-    line-height: 50px;
-}

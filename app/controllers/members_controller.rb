@@ -1,7 +1,7 @@
 class MembersController < ApplicationController
-  before_action :guest_check
+  before_action :guest_check,except: [:privacy,:terms]
 
-  def like_list 
+  def like_list
     favorite = Favorite.where(member_id: current_member.id).order("created_at desc").pluck(:post_id)
     favorite_post = Post.find(favorite)
     #Post.joins(:favorite).where("favorites.member_id = ?",current_member.id).order("favorites.created_at desc")

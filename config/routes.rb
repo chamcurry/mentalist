@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   resource :members,only:[:edit,:update] do
     get :like_list
     get :my_page
+    get :privacy
+    get :terms
     patch :withdraw
   end
 

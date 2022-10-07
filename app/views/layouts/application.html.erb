@@ -118,14 +118,16 @@
   </main>
 
   <footer class="footer my-5">
-    <div class="fixed-bottom bg-dark mx-auto">
-      <p class="text-muted text-center mt-2">© 2022 麺多List</p>
-      <p class="text-muted text-center mt-2">
-        <%= link_to "プライバシーポリシー",privacy_members_path,class: "text-muted" %>
-      </p>
-      <p class="text-muted text-center mt-2">
-        <%= link_to "利用規約",terms_members_path,class: "text-muted"%>
-      </p>
+    <div class="row fixed-bottom bg-dark py-1">
+        <div class="col-4 text-muted text-center">
+          <%= link_to "利用規約",terms_members_path,class: "text-muted"%>
+        </div>
+        <div class="col-4 text-muted text-center">
+          <%= link_to "プライバシーポリシー",privacy_members_path,class: "text-muted" %>
+        </div>
+        <div class="col-4 text-muted text-center">
+          © 2022 麺多List
+        </div>
     </div>
   </footer>
     <%# bootstrap%>

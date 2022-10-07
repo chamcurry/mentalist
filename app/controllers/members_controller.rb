@@ -2,22 +2,22 @@ class MembersController < ApplicationController
   before_action :guest_check,except: [:privacy,:terms]
 
   def like_list
+    # @posts = Post.like_search(params[:keyword],params[:genre_id]).page(params[:page]).per(6)
     favorite = Favorite.where(member_id: current_member.id).order("created_at desc").pluck(:post_id)
     favorite_post = Post.find(favorite)
     #Post.joins(:favorite).where("favorites.member_id = ?",current_member.id).order("favorites.created_at desc")
-    if params[:search].blank? && params[:genre_id].blank?
-      @posts = Kaminari.paginate_array(favorite_post).page(params[:page]).per(6)
-    elsif params[:search].present? && params[:genre_id].blank?
-      favorite = favorite_post.where("title LIKE ?","%#{params[:search]}%")
-      @posts = Kaminari.paginate_array(favorite).page(params[:page]).per(6)
-    elsif params[:search].blank? && params[:genre_id].present?
-      target_genre_post_ids = Genre.find(params[:genre_id]).posts.ids
-      favorite_post_ids = favorite_post.ids
-      favorite = Post.where(id: (target_genre_post_ids & favorite_post_ids))
-      @posts = Kaminari.paginate_array(favorite).page(params[:page]).per(6)
+    if keyword.blank? && genre_id.blank?
+      @posts = Kaminari.paginate_array(favorite_post)
+    elsif keyword.present? && genre_id.blank?
+      favorite = favorite_post.where("title LIKE ?","%#{keyword}%")
+      @posts = Kaminari.paginate_array(favorite)
+    elsif keyword.blank? && genre_id.present?
+      target_genre_post = Genre.find(genre_id).posts
+      favorite = Post.where(id: (target_genre_post & favorite_post))
+      @posts = Kaminari.paginate_array(favorite)
     else
-      @posts = Genre.find(params[:genre_id]).posts.where("title LIKE ?","%#{params[:search]}%")
-      @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(6)
+      @posts = Genre.find(genre_id).posts.where("title LIKE ?","%#{keyword}%")
+      @posts = Kaminari.paginate_array(@posts)
     end
   end
   def my_page

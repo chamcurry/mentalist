@@ -1,0 +1,6 @@
+<%- if devise_mapping.omniauthable? %>
+  <%- resource_class.omniauth_providers.each do |provider| %>
+    <!--Twitter認証用リンク-->
+    <%= link_to "#{OmniAuth::Utils.camelize(provider)}アカウントでログイン", omniauth_authorize_path(resource_name, provider), class:'fab fa-twitter', method: :post %>
+  <% end %>
+<% end %>

@@ -2,23 +2,11 @@ class MembersController < ApplicationController
   before_action :guest_check,except: [:privacy,:terms]
 
   def like_list
-    # @posts = Post.like_search(params[:keyword],params[:genre_id]).page(params[:page]).per(6)
-    favorite = Favorite.where(member_id: current_member.id).order("created_at desc").pluck(:post_id)
-    favorite_post = Post.find(favorite)
-    #Post.joins(:favorite).where("favorites.member_id = ?",current_member.id).order("favorites.created_at desc")
-    if keyword.blank? && genre_id.blank?
-      @posts = Kaminari.paginate_array(favorite_post)
-    elsif keyword.present? && genre_id.blank?
-      favorite = favorite_post.where("title LIKE ?","%#{keyword}%")
-      @posts = Kaminari.paginate_array(favorite)
-    elsif keyword.blank? && genre_id.present?
-      target_genre_post = Genre.find(genre_id).posts
-      favorite = Post.where(id: (target_genre_post & favorite_post))
-      @posts = Kaminari.paginate_array(favorite)
-    else
-      @posts = Genre.find(genre_id).posts.where("title LIKE ?","%#{keyword}%")
-      @posts = Kaminari.paginate_array(@posts)
-    end
+    favorite = Favorite.where(member_id: current_member.id).pluck(:post_id)
+    favorite_post = Post.where(id: favorite).order("created_at desc")
+    # favorite_post = Post.find(favorite)
+    # favorite = Post.joins(:favorite).where("favorites.member_id = ?",current_member.id).order("favorites.created_at desc")
+    @posts = Post.like_search(params, favorite, favorite_post)
   end
   def my_page
     @posts = current_member.posts.all

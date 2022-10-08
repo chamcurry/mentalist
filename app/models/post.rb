@@ -28,22 +28,23 @@ class Post < ApplicationRecord
     end
   end
 
-  def Post.like_search(keyword,genre_id)
-    favorite = Favorite.where(member_id: current_member.id).order("created_at desc").pluck(:post_id)
-    favorite_post = Post.find(favorite)
-    #Post.joins(:favorite).where("favorites.member_id = ?",current_member.id).order("favorites.created_at desc")
-    if keyword.blank? && genre_id.blank?
-      @posts = Kaminari.paginate_array(favorite_post)
-    elsif keyword.present? && genre_id.blank?
-      favorite = favorite_post.where("title LIKE ?","%#{keyword}%")
-      @posts = Kaminari.paginate_array(favorite)
-    elsif keyword.blank? && genre_id.present?
-      target_genre_post = Genre.find(genre_id).posts
-      favorite = Post.where(id: (target_genre_post & favorite_post))
-      @posts = Kaminari.paginate_array(favorite)
+  def self.like_search(params, favorite, favorite_post)
+
+    if params[:search].blank? && params[:genre_id].blank?
+      posts = Kaminari.paginate_array(favorite_post).page(params[:page]).per(6)
+    elsif params[:search].present? && params[:genre_id].blank?
+      favorite = favorite_post.where("title LIKE ?","%#{params[:search]}%")
+      posts = Kaminari.paginate_array(favorite).page(params[:page]).per(6)
+    elsif params[:search].blank? && params[:genre_id].present?
+      target_genre_post_ids = Genre.find(params[:genre_id]).posts
+      favorite_post_ids = favorite_post
+      favorite = Post.where(id: (target_genre_post_ids & favorite_post_ids))
+      posts = Kaminari.paginate_array(favorite).page(params[:page]).per(6)
     else
-      @posts = Genre.find(genre_id).posts.where("title LIKE ?","%#{keyword}%")
-      @posts = Kaminari.paginate_array(@posts)
+      posts = Genre.find(params[:genre_id]).posts.where("title LIKE ?","%#{params[:search]}%")
+      posts = Kaminari.paginate_array(posts).page(params[:page]).per(6)
     end
+
+    return posts
   end
 end

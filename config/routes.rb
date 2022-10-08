@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   end
 
   devise_for :member,controllers: {
-    sessions: "member/sessions"
+    sessions: "member/sessions",
+     # Twitter API認証用
+    :omniauth_callbacks => 'member/omniauth_callbacks'
   }
 
   devise_for :admin,skip:[:passwords],controllers: {

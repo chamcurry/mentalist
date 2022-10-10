@@ -34,26 +34,42 @@
 
 /* ページTOPに戻る */
 /*// ボタンの配置場所*/
-.pagetop{
-    display: block;
-    position: fixed;
-    right: 20px;
-    bottom: 50px;
-}
+/*.pagetop{*/
+/*    display: block;*/
+/*    position: fixed;*/
+/*    right: 20px;*/
+/*    bottom: 50px;*/
+/*}*/
 /*// ボタンのデザイン*/
-.pagetop a{
-    display: block;
-    font-size: 0;
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    background: gray;
-    border-radius: 50%;
-    line-height: 50px;
-}
+/*.pagetop a{*/
+/*    display: block;*/
+/*    font-size: 0;*/
+/*    width: 50px;*/
+/*    height: 50px;*/
+/*    text-align: center;*/
+/*    background: gray;*/
+/*    border-radius: 50%;*/
+/*    line-height: 50px;*/
+/*}*/
 /*// アイコンのデザイン*/
-.pagetop a i{
-    font-size: 20px;
-    color:#fff;
-    line-height: 50px;
+/*.pagetop a i{*/
+/*    font-size: 20px;*/
+/*    color:#fff;*/
+/*    line-height: 50px;*/
+/*}*/
+
+.p-scroll {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+}
+.p-scroll a {
+  text-align: center;
+  text-decoration: none;
+  background: #99FFFF;
+  color: #fff;
+  padding: 30px;
+}
+.p-scroll a:hover {
+  background: #33FFFF;
 }

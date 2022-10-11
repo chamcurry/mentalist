@@ -794,22 +794,22 @@
 
 // // ページトップへ戻るクリックで、スクロールして１番上に戻る
 // /* global $*/
-// $(document).on('turbolinks:load', function() {
-//   $(function(){
-//     $('.pagetop').click(function(){
-//       $('body,html').animate({
-//       scrollTop: 0},800);
-//       return false;
-//     });
-//   });
-// });
- /* global $*/
-//
-$(function() {
-  var pagescroll = $('p-scroll');
-  // ボタンを押すと、0.8秒かけてトップに戻る
-  pagescroll.click(function () {
-     $('body, html').animate({ scrollTop: 0 }, 800);
+$(document).ready(function() {
+
+
+  var pagetop = $('.p-scroll');
+  pagetop.hide();
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 1200) {
+      pagetop.fadeIn();
+    } else {
+     pagetop.fadeOut();
+    }
+  });
+  pagetop.click(function () {
+    $('body, html').animate({
+        scrollTop: 0
+    }, 2000);
     return false;
   });
 });

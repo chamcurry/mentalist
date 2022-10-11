@@ -796,11 +796,11 @@
 // /* global $*/
 $(document).ready(function() {
 
-
+ /* global $*/
   var pagetop = $('.p-scroll');
   pagetop.hide();
   $(window).scroll(function () {
-    if ($(this).scrollTop() > 1200) {
+    if ($(this).scrollTop() > 500) {
       pagetop.fadeIn();
     } else {
      pagetop.fadeOut();
@@ -809,7 +809,7 @@ $(document).ready(function() {
   pagetop.click(function () {
     $('body, html').animate({
         scrollTop: 0
-    }, 2000);
+    }, 1000);
     return false;
   });
 });

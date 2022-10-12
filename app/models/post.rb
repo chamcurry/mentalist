@@ -12,7 +12,7 @@ class Post < ApplicationRecord
   # favoritesテーブルに存在するか判断
     favorites.exists?(member_id: member.id)
   end
-
+  # 投稿一覧
   def self.search(keyword,genre_id)
     if keyword.blank? && genre_id.blank?
       @posts = Post.all.order(id: "DESC")
@@ -27,7 +27,7 @@ class Post < ApplicationRecord
       @posts = Kaminari.paginate_array(@posts)
     end
   end
-
+  # お気に入り一覧
   def self.like_search(params, favorite, favorite_post)
 
     if params[:search].blank? && params[:genre_id].blank?
@@ -44,7 +44,6 @@ class Post < ApplicationRecord
       posts = Genre.find(params[:genre_id]).posts.where("title LIKE ?","%#{params[:search]}%")
       posts = Kaminari.paginate_array(posts).page(params[:page]).per(6)
     end
-
     return posts
   end
 end

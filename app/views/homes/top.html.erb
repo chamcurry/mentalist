@@ -1,4 +1,4 @@
-<div class="top-image jumbotron jumbotron-fluid">
+<div class="top-image jumbotron jumbotron-fluid mb-1">
   <div class="container">
     <div class="row">
       <p class="col h3 d-flex justify-content-center font-weight-bold top-title">
@@ -12,5 +12,13 @@
     </div>
   </div>
 </div>
-<p class="text-center">新着の投稿</p>
-<%= render 'posts/post_list',posts: @posts %>
+
+<div class="row h5 d-flex justify-content-center">新しい投稿</div>
+
+<!--PC表示-->
+  <div class="d-none d-md-block">
+    <%= render 'posts/pc_top',posts: @posts %>
+  </div>
+
+
+

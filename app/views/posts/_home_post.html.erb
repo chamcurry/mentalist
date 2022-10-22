@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-6">
+      <div class="card-deck">
+      <%= posts.each do |post| %>
+        <%= link_to post_path(post) do %>
+        <div class="card p-1">
+          <div class="card-img">
+            <% if post.image.attached? %>
+              <%= image_tag post.image,:style =>"max-width: 100%";%>
+            <% end %>
+          </div>
+          <div class="card-img-overlay">
+            <span id="star-rate-<%= post.id %>">
+              <script>
+                $('#star-rate-<%= post.id %>').raty({
+                  size: 36,
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starHalf: "<%= asset_path('star-half.png') %>",
+                  half: true,
+                  readOnly: true,
+                  score: <%= post.star %>
+                });
+              </script>
+            </span>
+          </div>
+        <% end %>
+          <div class="card-body bg-dark text-light mt-1 pt-2" style="height: 12rem;">
+            <div class="row h6 my-0 d-flex align-items-center">
+                <%= image_tag post.member.get_profile_image,size: "30x30",class: "border rounded-circle mx-2"%>
+              <%=post.member.full_name.truncate(5) %>
+              <div class="strftime col d-flex justify-content-end">
+                <%=post.created_at.strftime('%y/%m/%d') %>
+              </div>
+            </div>
+            <div class="card-title d-flex-justify-content-center my-1 ">
+              <div class="col">
+                <%=post.title%>
+              </div>
+            </div>
+            <div class="card-text px-2">
+              <div><%= post.body.truncate(12) %></div>
+              <div class="row mt-3 d-flex ">
+                <div class="col p-0 d-flex justify-content-end align-items-center">
+                  <% post.genres.each do |genre| %>
+                    <span class= 'mx-1 badge badge-secondary'><%= genre.soup %></span>
+                  <% end %>
+                  <i class="far fa-comment-alt text-info mx-2"><%= post.comments.count%></i>
+                    <!--メンバーがサインインかつ、idが１では無いとき-->
+                  <% if member_signed_in? && current_member.id != 1 %>
+                    <!--投稿に紐ついているいいねがログインしているメンバーのものなら-->
+                    <%= render "layouts/favorites",post: post %>
+                  <% else %>
+                    <i class="fas fa-heart text-muted"><%= post.favorites.count %></i>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-end">
+    <%= render 'layouts/pagetop' %>
+　</div>
+</div>

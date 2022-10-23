@@ -24,22 +24,22 @@ class Member < ApplicationRecord
    profile_image
   end
 
-  def self.find_for_oauth(auth)
-    member = Member.find_by(uid: auth.uid, provider: auth.provider)
+  # def self.find_for_oauth(auth)
+  #   member = Member.find_by(uid: auth.uid, provider: auth.provider)
 
-    member ||= Member.create!(
-      uid: auth.uid,
-      provider: auth.provider,
-      first_name: auth.info,
-      last_name: auth.info,
-      # name: auth[:info][:name],
-      email: Member.dummy_email(auth),
-      password: Devise.friendly_token[0,20]
-      )
-    member
-  end
+  #   member ||= Member.create!(
+  #     uid: auth.uid,
+  #     provider: auth.provider,
+  #     first_name: auth.info,
+  #     last_name: auth.info,
+  #     # name: auth[:info][:name],
+  #     email: Member.dummy_email(auth),
+  #     password: Devise.friendly_token[0,20]
+  #     )
+  #   member
+  # end
 
-  def self.dummy_email(auth)
-    "#{Time.now.strftime('%Y%m%d%H%M%S').to_i}-#{auth.uid}-#{auth.provider}example.com"
-  end
+  # def self.dummy_email(auth)
+  #   "#{Time.now.strftime('%Y%m%d%H%M%S').to_i}-#{auth.uid}-#{auth.provider}example.com"
+  # end
 end

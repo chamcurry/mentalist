@@ -1,24 +1,26 @@
 <div class="top-image jumbotron jumbotron-fluid mb-1">
   <div class="container">
-    <div class="row">
-      <p class="col h3 d-flex justify-content-center font-weight-bold top-title">
-        麺多listへようこそ<br>
+    <div class="row d-flex justify-content-center">
+      <p class="top-title bg-warning ">
+        Welcome to <br>
       </p>
     </div>
-    <div class="row">
-      <p class="col h3 d-flex justify-content-center font-weight-bold top-title">
-        イチオシを見つけましょう！
+    <div class="row d-flex justify-content-center">
+      <p class="top-title  bg-warning ">
+        麺多list
       </p>
     </div>
   </div>
 </div>
 
-<div class="row h5 d-flex justify-content-center">新しい投稿</div>
+<!--PC,モニター表示-->
+<div class="d-none d-lg-block">
+  <%= render 'posts/pc_top',posts: @posts %>
+</div>
 
-<!--PC表示-->
-  <div class="d-none d-md-block">
-    <%= render 'posts/pc_top',posts: @posts %>
-  </div>
+<div class="d-lg-none d-block">
+  <%= render 'posts/post_list',posts: @posts %>
+</div>
 
 
 
